@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameEditText;
     EditText passwordEditText;
     SQLiteHelperUser sqliteHelperUser;
+    SQLiteHelperUserAdmin sqliteHelperUserAdmin;
     Button loginButton;
 
     public void LoginButton(View view){
@@ -25,16 +26,26 @@ public class LoginActivity extends AppCompatActivity {
         //authenticate User
         User currentUser = sqliteHelperUser.Authenticate(new User(username,password));
 
+        //authenticate Admin
+        UserAdmin currentAdmin = sqliteHelperUserAdmin.AuthenticateAdmin(new UserAdmin(username,password));
+
         //check if authentication is successful or not
-        if (currentUser !=null){
+        if (currentUser !=null ){
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //User Logged in successfully
-            
+
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
             startActivity(userHomeIntent);
+
+        } else if(currentAdmin != null){
+            Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
+            //Officer Logged in successfully
+
+            Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+            startActivity(adminHomeIntent);
         } else {
-            Toast.makeText(this, "No user found", Toast.LENGTH_SHORT).show();
-            //User Logged in failed
+            Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();
+            //User Logged in failed.
         }
     }
 
@@ -55,5 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginBtn);
 
         sqliteHelperUser = new SQLiteHelperUser(this);
+        sqliteHelperUserAdmin = new SQLiteHelperUserAdmin(this);
     }
 }
