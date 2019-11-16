@@ -29,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
         if (currentUser !=null){
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //User Logged in successfully
+            
+            Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
+            startActivity(userHomeIntent);
         } else {
             Toast.makeText(this, "No user found", Toast.LENGTH_SHORT).show();
             //User Logged in failed
