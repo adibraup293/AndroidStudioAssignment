@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminHomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".UserHomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".SetUpResidenceActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".AdminHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />

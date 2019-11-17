@@ -15,12 +15,12 @@ public class SQLiteHelperUserAdmin extends SQLiteOpenHelper {
 
     //TABLE USERS COLUMNS
     public static final String KEY_STAFF_ID = "staffID"; // COLUMN Staff ID @primaryKey
-    public static final String KEY_USER_NAME = "username";  //COLUMN user name @primaryKey
+    public static final String KEY_USER_NAME = "username";  //COLUMN username
     public static final String KEY_PASSWORD = "password";//COLUMN password
     public static final String KEY_NAME = "name";//COLUMN name
     public static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERSADMIN //SQL for creating userAdmin table
             + " ( "
-            + KEY_STAFF_ID + " INT PRIMARY KEY AUTOINCREMENT, "
+            + KEY_STAFF_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + KEY_USER_NAME + " TEXT,"
             + KEY_PASSWORD + " TEXT,"
             + KEY_NAME + " TEXT"
@@ -29,30 +29,16 @@ public class SQLiteHelperUserAdmin extends SQLiteOpenHelper {
 
     public SQLiteHelperUserAdmin(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues insertValues = new ContentValues();
-
-        //first Admin
-        insertValues.put(KEY_USER_NAME, "Admin"); //Put username in  @values
-        insertValues.put(KEY_PASSWORD, "Admin"); //Put password in  @values
-        insertValues.put(KEY_NAME, "Daniel Toh"); //Put name in  @values
-
-        //second Admin
-        insertValues.put(KEY_USER_NAME, "Admin2"); //Put username in  @values
-        insertValues.put(KEY_PASSWORD, "Admin2"); //Put password in  @values
-        insertValues.put(KEY_NAME, "Nicholas Kelsey"); //Put name in  @values
-
-        //third Admin
-        insertValues.put(KEY_USER_NAME, "Admin3"); //Put username in  @values
-        insertValues.put(KEY_PASSWORD, "Admin4"); //Put password in  @values
-        insertValues.put(KEY_NAME, "Yue Qi Dong"); //Put name in  @values
+        sqLiteDatabase.execSQL("INSERT INTO userAdmin (username, password, name) VALUES('Admin', 'Admin', 'Daniel Toh')");
+        sqLiteDatabase.execSQL("INSERT INTO userAdmin (username, password, name) VALUES('Admin2', 'Admin2', 'Nicholas Kelsey')");
+        sqLiteDatabase.execSQL("INSERT INTO userAdmin (username, password, name) VALUES('Admin3\', 'Admin3', 'Yue Qi Dong')");
     }
 
     @Override

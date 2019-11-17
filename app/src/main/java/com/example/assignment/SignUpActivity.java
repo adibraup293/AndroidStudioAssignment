@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText usernameEditText;
@@ -24,7 +25,6 @@ public class SignUpActivity extends AppCompatActivity {
         User newUser = new User(username, password, name, email, monthlyIncome);
         sqliteHelperUser.addUser(newUser);
         finish();
-
     }
 
     @Override

@@ -7,4 +7,44 @@
     tools:context=".AdminHomeActivity"
     android:background="@drawable/officer_background">
 
+    <TextView
+        android:id="@+id/adminTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/gothammedium"
+        android:text="Welcome Admin"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/setupNewResidenceBtn"
+        style="Widget.AppCompat.Button.Colored"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:onClick="openRegisterResidence"
+        android:text="Set Up New Residence"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminTextView" />
+
+    <Button style="Widget.AppCompat.Button.Colored"
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="View Applications"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setupNewResidenceBtn" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
