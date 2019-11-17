@@ -16,20 +16,34 @@ public class SetUpResidenceActivity extends AppCompatActivity {
 
     SQLiteHelperResidence sqLiteHelperResidence;
 
-    public void addResidence (View view){
-        String address =residenceAddressEditText.getText().toString().trim();
-        int numOfUnits = Integer.parseInt(residenceNumOfUnits.getText().toString());
-        int sizePerUnit = Integer.parseInt(residenceSizePerUnit.getText().toString());
-        Double monthlyRental = Double.parseDouble(residenceMonthlyRental.getText().toString());
+    public void AddResidenceButton(View view){
+        Residence residence = new Residence();
+        residence.setAddress(residenceAddressEditText.getText().toString().trim());
+        residence.setNumOfUnits(Integer.parseInt(residenceNumOfUnits.getText().toString()));
+        residence.setSizePerUnit(Integer.parseInt(residenceSizePerUnit.getText().toString()));
+        residence.setMonthlyRental(Double.parseDouble(residenceMonthlyRental.getText().toString()));
+        sqLiteHelperResidence.addResidence(residence);
 
-        if (address.matches("")){
-            Toast.makeText(this, "Please enter address!", Toast.LENGTH_SHORT).show();
-        } else {
-            sqLiteHelperResidence.insertResidence(address, numOfUnits, sizePerUnit, monthlyRental);
-            Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
+
+        sqLiteHelperResidence.close();
         finish();
     }
+
+    //public void addResidence (View view){
+    //    String address =residenceAddressEditText.getText().toString().trim();
+    //    int numOfUnits = Integer.parseInt(residenceNumOfUnits.getText().toString());
+    //    int sizePerUnit = Integer.parseInt(residenceSizePerUnit.getText().toString());
+    //    Double monthlyRental = Double.parseDouble(residenceMonthlyRental.getText().toString());
+
+    //    if (address.matches("")){
+    //        Toast.makeText(this, "Please enter address!", Toast.LENGTH_SHORT).show();
+    //    } else {
+    //        sqLiteHelperResidence.insertResidence(address, numOfUnits, sizePerUnit, monthlyRental);
+    //        Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
+    //    }
+    //    finish();
+    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,7 +10,8 @@ public class Residence {
     public Residence() {
     }
 
-    public Residence(String address, int numOfUnits, int sizePerUnit, double monthlyRental) {
+    public Residence(int residenceID, String address, int numOfUnits, int sizePerUnit, double monthlyRental) {
+        this.residenceID = residenceID;
         this.address = address;
         this.numOfUnits = numOfUnits;
         this.sizePerUnit = sizePerUnit;

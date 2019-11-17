@@ -48,6 +48,7 @@ public class SQLiteHelperUser extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
     }
 
+
     // Adding new User Details
     void insertUserDetails(String username, String password, String name, String email, Double monthlyIncome){
         //Get the Data Repository in write mode

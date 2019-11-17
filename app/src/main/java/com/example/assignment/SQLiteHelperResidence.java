@@ -23,7 +23,7 @@ public class SQLiteHelperResidence extends SQLiteOpenHelper {
     public static final String KEY_MONTHLY_RENTAL = "monthlyRental";//COLUMN monthly rental
     public static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating userAdmin table
             + " ( "
-            + KEY_RESIDENCE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + KEY_RESIDENCE_ID + " INTEGER PRIMARY KEY, "
             + KEY_RESIDENCE_ADDRESS + " TEXT,"
             + KEY_NUM_UNITS + " TEXT,"
             + KEY_SIZE_PER_UNIT + " TEXT,"
@@ -47,36 +47,106 @@ public class SQLiteHelperResidence extends SQLiteOpenHelper {
     }
 
     // Adding new Residence Details
-    void insertResidence(String address, int numOfUnits, int sizePerUnit, Double monthlyRental){
-        //Get the Data Repository in write mode
+    public void addResidence(Residence residence){
         SQLiteDatabase db = this.getWritableDatabase();
-        //Create a new map of values, where column names are the keys
-        ContentValues cValues = new ContentValues();
-        cValues.put(KEY_RESIDENCE_ADDRESS, address);
-        cValues.put(KEY_NUM_UNITS, numOfUnits);
-        cValues.put(KEY_SIZE_PER_UNIT, sizePerUnit);
-        cValues.put(KEY_MONTHLY_RENTAL, monthlyRental);
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE_RESIDENCE,null, cValues);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLiteHelperResidence.KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(SQLiteHelperResidence.KEY_NUM_UNITS, residence.getNumOfUnits());
+        contentValues.put(SQLiteHelperResidence.KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
+        contentValues.put(SQLiteHelperResidence.KEY_MONTHLY_RENTAL, residence.getMonthlyRental());
+
+        db.insert(SQLiteHelperResidence.TABLE_RESIDENCE, null, contentValues);
+        db.close();
+
+    }
+
+    //void insertResidence(String address, int numOfUnits, int sizePerUnit, Double monthlyRental){
+    //    //Get the Data Repository in write mode
+    //    SQLiteDatabase db = this.getWritableDatabase();
+    //    //Create a new map of values, where column names are the keys
+    //    ContentValues cValues = new ContentValues();
+    //    cValues.put(KEY_RESIDENCE_ADDRESS, address);
+    ///    cValues.put(KEY_NUM_UNITS, numOfUnits);
+    //    cValues.put(KEY_SIZE_PER_UNIT, sizePerUnit);
+    //    cValues.put(KEY_MONTHLY_RENTAL, monthlyRental);
+    //    // Insert the new row, returning the primary key value of the new row
+    //    long newRowId = db.insert(TABLE_RESIDENCE,null, cValues);
+    //}
+
+    public List<Residence> GetAllResidences(){
+
+        List<Residence> residenceList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + SQLiteHelperResidence.TABLE_RESIDENCE;
+
+        Cursor cursor = db.rawQuery(selectAll,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Residence residence = new Residence();
+                residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnits(cursor.getInt(2));
+                residence.setSizePerUnit(cursor.getInt(3));
+                residence.setMonthlyRental(cursor.getDouble(4));
+
+                residenceList.add(residence);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  residenceList;
     }
 
     // Get User Details
-    public ArrayList<HashMap<String, String>> getResidence(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> residenceList = new ArrayList<>();
-        String query = "SELECT residenceID, address, numUnits, sizePerUnit, monthlyRental FROM "+ TABLE_RESIDENCE;
-        Cursor cursor = db.rawQuery(query,null);
-        while (cursor.moveToNext()){
-            HashMap<String,String> residence = new HashMap<>();
-            residence.put("residenceID", cursor.getString(cursor.getColumnIndex(KEY_RESIDENCE_ID)));
-            residence.put("address",cursor.getString(cursor.getColumnIndex(KEY_RESIDENCE_ADDRESS)));
-            residence.put("numUnits",cursor.getString(cursor.getColumnIndex(KEY_NUM_UNITS)));
-            residence.put("sizePerUnit",cursor.getString(cursor.getColumnIndex(KEY_SIZE_PER_UNIT)));
-            residence.put("monthlyRental",cursor.getString(cursor.getColumnIndex(KEY_MONTHLY_RENTAL)));
+    //public ArrayList<HashMap<String, String>> getResidence(){
+    //    SQLiteDatabase db = this.getWritableDatabase();
+    //    ArrayList<HashMap<String, String>> residenceList = new ArrayList<>();
+    //    String query = "SELECT address, numUnits, sizePerUnit, monthlyRental FROM "+ TABLE_RESIDENCE;
+    //    Cursor cursor = db.rawQuery(query,null);
+     ///   while (cursor.moveToNext()){
+     //       HashMap<String,String> residence = new HashMap<>();
+     //       residence.put("address",cursor.getString(cursor.getColumnIndex(KEY_RESIDENCE_ADDRESS)));
+     //       residence.put("numUnits",cursor.getString(cursor.getColumnIndex(KEY_NUM_UNITS)));
+     //       residence.put("sizePerUnit",cursor.getString(cursor.getColumnIndex(KEY_SIZE_PER_UNIT)));
+      //      residence.put("monthlyRental",cursor.getString(cursor.getColumnIndex(KEY_MONTHLY_RENTAL)));
+//
+      //      residenceList.add(residence);
+      //  }
+     //   return  residenceList;
+   // }
 
-            residenceList.add(residence);
-        }
-        return  residenceList;
+    public void DeleteAllResidence(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteAll = "DELETE FROM " + SQLiteHelperResidence.TABLE_RESIDENCE;
+
+        db.execSQL(deleteAll);
+        db.close();
+    }
+
+    public void DeleteResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(SQLiteHelperResidence.TABLE_RESIDENCE,
+                SQLiteHelperResidence.KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(residence.getResidenceID())});
+        db.close();
+    }
+
+    public int UpdateResidence(Residence residence){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLiteHelperResidence.KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(SQLiteHelperResidence.KEY_NUM_UNITS, residence.getNumOfUnits());
+        contentValues.put(SQLiteHelperResidence.KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
+        contentValues.put(SQLiteHelperResidence.KEY_MONTHLY_RENTAL, residence.getMonthlyRental());
+
+        return db.update(SQLiteHelperResidence.TABLE_RESIDENCE,contentValues,
+                SQLiteHelperResidence.KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(residence.getResidenceID())});
     }
 
 
