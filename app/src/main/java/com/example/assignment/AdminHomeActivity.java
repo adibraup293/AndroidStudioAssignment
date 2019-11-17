@@ -12,6 +12,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         Intent setupResidenceIntent = new Intent(AdminHomeActivity.this, SetUpResidenceActivity.class);
         startActivity(setupResidenceIntent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

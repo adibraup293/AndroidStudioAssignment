@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class SQLiteHelperUser extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "UserDB";
@@ -36,6 +39,7 @@ public class SQLiteHelperUser extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
+
     }
 
     @Override
@@ -44,17 +48,51 @@ public class SQLiteHelperUser extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
     }
 
-    //Adding users into the users table
-    public void addUser (User user){
-        SQLiteDatabase db = this.getWritableDatabase(); //get writable database
-        ContentValues values = new ContentValues(); //create content values to insert
-        values.put(KEY_USER_NAME, user.getUsername()); //Put username in  @values
-        values.put(KEY_PASSWORD, user.getPassword()); //Put password in  @values
-        values.put(KEY_NAME, user.getName()); //Put name in  @values
-        values.put(KEY_EMAIL, user.getEmail()); //Put email in  @values
-        values.put(KEY_MONTHLY_INCOME, user.getMonthlyIncome()); //Put monthly income in  @values
-        long todo_id = db.insert(TABLE_USERS, null, values); // insert row
+    // Adding new User Details
+    void insertUserDetails(String username, String password, String name, String email, Double monthlyIncome){
+        //Get the Data Repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Create a new map of values, where column names are the keys
+        ContentValues cValues = new ContentValues();
+        cValues.put(KEY_USER_NAME, username);
+        cValues.put(KEY_PASSWORD, password);
+        cValues.put(KEY_NAME, name);
+        cValues.put(KEY_EMAIL, email);
+        cValues.put(KEY_MONTHLY_INCOME, monthlyIncome);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(TABLE_USERS,null, cValues);
     }
+
+    // Get User Details
+    public ArrayList<HashMap<String, String>> GetUsers(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
+        String query = "SELECT username, password FROM "+ TABLE_USERS;
+        Cursor cursor = db.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            HashMap<String,String> user = new HashMap<>();
+            user.put("username",cursor.getString(cursor.getColumnIndex(KEY_USER_NAME)));
+            user.put("password",cursor.getString(cursor.getColumnIndex(KEY_PASSWORD)));
+            user.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+            user.put("email",cursor.getString(cursor.getColumnIndex(KEY_EMAIL)));
+            user.put("monthly income",cursor.getString(cursor.getColumnIndex(KEY_MONTHLY_INCOME)));
+            userList.add(user);
+        }
+        return  userList;
+    }
+
+    //Adding users into the users table
+    //public void addUser (User user){
+    //    SQLiteDatabase db = this.getWritableDatabase(); //get writable database
+    //    ContentValues values = new ContentValues(); //create content values to insert
+    //    values.put(KEY_USER_NAME, user.getUsername()); //Put username in  @values
+    //    values.put(KEY_PASSWORD, user.getPassword()); //Put password in  @values
+    //    values.put(KEY_NAME, user.getName()); //Put name in  @values
+    //    values.put(KEY_EMAIL, user.getEmail()); //Put email in  @values
+    //    values.put(KEY_MONTHLY_INCOME, user.getMonthlyIncome()); //Put monthly income in  @values
+    //    long todo_id = db.insert(TABLE_USERS, null, values); // insert row
+
+    //}
 
     //checking if there are users in the database
     public User Authenticate(User user){

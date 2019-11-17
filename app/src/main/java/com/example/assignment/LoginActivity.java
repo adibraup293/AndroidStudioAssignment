@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText usernameEditText;
@@ -30,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //check if authentication is successful or not
         if (currentUser !=null ){
-            Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Logging in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
             //User Logged in successfully
 
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);

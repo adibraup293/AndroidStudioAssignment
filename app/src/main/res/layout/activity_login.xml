@@ -17,6 +17,7 @@
         android:drawableLeft="@drawable/username_icon"
         android:ems="10"
         android:hint="Enter username"
+        android:inputType="textShortMessage"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

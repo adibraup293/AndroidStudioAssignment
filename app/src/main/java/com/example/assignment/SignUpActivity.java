@@ -22,8 +22,9 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        User newUser = new User(username, password, name, email, monthlyIncome);
-        sqliteHelperUser.addUser(newUser);
+
+
+        sqliteHelperUser.insertUserDetails(username,password,name,email,monthlyIncome);
         finish();
     }
 

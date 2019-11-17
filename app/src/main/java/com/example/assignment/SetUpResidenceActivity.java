@@ -18,16 +18,14 @@ public class SetUpResidenceActivity extends AppCompatActivity {
 
     public void addResidence (View view){
         String address =residenceAddressEditText.getText().toString().trim();
-        int numOfUnits = Integer.valueOf(residenceNumOfUnits.getText().toString());
-        //int numOfUnits = Integer.getInteger(residenceNumOfUnits.getText().toString());
-        int sizePerUnit = Integer.valueOf(residenceSizePerUnit.getText().toString());
+        int numOfUnits = Integer.parseInt(residenceNumOfUnits.getText().toString());
+        int sizePerUnit = Integer.parseInt(residenceSizePerUnit.getText().toString());
         Double monthlyRental = Double.parseDouble(residenceMonthlyRental.getText().toString());
 
         if (address.matches("")){
             Toast.makeText(this, "Please enter address!", Toast.LENGTH_SHORT).show();
         } else {
-            Residence newResidence = new Residence(address, numOfUnits, sizePerUnit, monthlyRental);
-            sqLiteHelperResidence.addResidence(newResidence);
+            sqLiteHelperResidence.insertResidence(address, numOfUnits, sizePerUnit, monthlyRental);
             Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
         }
         finish();

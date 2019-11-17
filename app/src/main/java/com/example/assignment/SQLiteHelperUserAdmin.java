@@ -47,6 +47,20 @@ public class SQLiteHelperUserAdmin extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERSADMIN);
     }
 
+    // Adding new User Details
+    //void insertUserDetails(String name, String location, String designation) {
+    //    //Get the Data Repository in write mode
+    //    SQLiteDatabase db = this.getWritableDatabase();
+    //    //Create a new map of values, where column names are the keys
+    //    ContentValues cValues = new ContentValues();
+    //    cValues.put(KEY_NAME, name);
+    //   cValues.put(KEY_LOC, location);
+    //    cValues.put(KEY_DESG, designation);
+    //    // Insert the new row, returning the primary key value of the new row
+    //    long newRowId = db.insert(TABLE_Users, null, cValues);
+    //    db.close();
+    //}
+
     //checking if there are user admin in the database
     public UserAdmin AuthenticateAdmin(UserAdmin userAdmin){
         SQLiteDatabase db =this.getWritableDatabase();
