@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditResidenceActivity"
+    android:background="@drawable/officer_background">
+
+    <Button
+        android:id="@+id/editResidenceButton"
+        style="Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:onClick="UpdateResidenceButton"
+        android:text="Update Residence"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editMonthlyRentalEditText" />
+
+    <EditText
+        android:id="@+id/editNumOfUnitsEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="57dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/rooms_icon"
+        android:ems="10"
+        android:hint="Enter number of units"
+        android:inputType="numberSigned"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/residenceEditAddressEditText" />
+
+    <EditText
+        android:id="@+id/editSizePerUnitEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/sizeperunit_icon"
+        android:ems="10"
+        android:hint="Enter size per unit"
+        android:inputType="numberSigned"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editNumOfUnitsEditText" />
+
+    <EditText
+        android:id="@+id/editMonthlyRentalEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/monthly_rental_icon"
+        android:ems="10"
+        android:hint="Enter monthly rental"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editSizePerUnitEditText" />
+
+    <TextView
+        android:id="@+id/editResidenceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/gothammedium"
+        android:text="Edit Residence"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/residenceEditAddressEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/address_icon"
+        android:ems="10"
+        android:hint="Enter address"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editResidenceTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

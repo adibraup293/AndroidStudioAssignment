@@ -13,6 +13,11 @@ public class AdminHomeActivity extends AppCompatActivity {
         startActivity(setupResidenceIntent);
     }
 
+    public void openViewApplications(View view){
+        Intent viewApplicationAsAdminIntent = new Intent(AdminHomeActivity.this, ViewResidenceAdminActivity.class);
+        startActivity(viewApplicationAsAdminIntent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

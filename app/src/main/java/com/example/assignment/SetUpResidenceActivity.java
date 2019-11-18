@@ -3,6 +3,7 @@ package com.example.assignment;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         residence.setNumOfUnits(Integer.parseInt(residenceNumOfUnits.getText().toString()));
         residence.setSizePerUnit(Integer.parseInt(residenceSizePerUnit.getText().toString()));
         residence.setMonthlyRental(Double.parseDouble(residenceMonthlyRental.getText().toString()));
+
         sqLiteHelperResidence.addResidence(residence);
 
         Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();

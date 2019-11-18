@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditResidenceActivity"></activity>
+        <activity android:name=".ViewResidenceAdminActivity" />
+        <activity android:name=".CreateApplicationsActivity" />
         <activity
             android:name=".ViewResidenceApplicantActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SetUpResidenceActivity"
             android:theme="@style/AppTheme.NoActionBar" />

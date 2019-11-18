@@ -3,6 +3,7 @@ package com.example.assignment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +18,10 @@ import java.util.List;
 public class ViewResidenceApplicantActivity extends AppCompatActivity {
 
     ListView residenceListView;
-    ArrayList<HashMap<String, String>> residenceList;
     SQLiteHelperResidence sqLiteHelperResidence;
     Residence residence;
+
+    ArrayList<HashMap<String, String>> residenceList;
 
     @Override
     protected void onResume() {
@@ -32,6 +34,15 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
         List<Residence> residenceList = sqLiteHelperResidence.GetAllResidences();
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, residenceList);
         residenceListView.setAdapter(adapter);
+    }
+
+    public void ApplyingButton(View view) {
+
+        if (residence != null) {
+            Intent intent = new Intent(this, CreateApplicationsActivity.class);
+            intent.putExtra("id", residence.getResidenceID());
+            startActivity(intent);
+        }
     }
 
     //public void getAllResidence(){

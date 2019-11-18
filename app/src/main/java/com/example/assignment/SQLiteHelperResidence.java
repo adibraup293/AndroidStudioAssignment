@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
@@ -15,13 +16,13 @@ public class SQLiteHelperResidence extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String TABLE_RESIDENCE ="residence";
 
-    //TABLE USERS COLUMNS
+    //TABLE RESIDENCE COLUMNS
     public static final String KEY_RESIDENCE_ID = "residenceID"; // COLUMN Residence ID @primaryKey
     public static final String KEY_RESIDENCE_ADDRESS = "address";  //COLUMN address
     public static final String KEY_NUM_UNITS = "numUnits";//COLUMN number of units
     public static final String KEY_SIZE_PER_UNIT = "sizePerUnit";//COLUMN size per unit
     public static final String KEY_MONTHLY_RENTAL = "monthlyRental";//COLUMN monthly rental
-    public static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating userAdmin table
+    public static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating residence table
             + " ( "
             + KEY_RESIDENCE_ID + " INTEGER PRIMARY KEY, "
             + KEY_RESIDENCE_ADDRESS + " TEXT,"
@@ -58,6 +59,32 @@ public class SQLiteHelperResidence extends SQLiteOpenHelper {
         db.insert(SQLiteHelperResidence.TABLE_RESIDENCE, null, contentValues);
         db.close();
 
+    }
+
+    public Residence getResidence(int id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(SQLiteHelperResidence.TABLE_RESIDENCE,
+                new String[]{SQLiteHelperResidence.KEY_RESIDENCE_ID,
+                        SQLiteHelperResidence.KEY_RESIDENCE_ADDRESS,
+                        SQLiteHelperResidence.KEY_NUM_UNITS,
+                        SQLiteHelperResidence.KEY_SIZE_PER_UNIT,
+                        SQLiteHelperResidence.KEY_MONTHLY_RENTAL},
+                        SQLiteHelperResidence.KEY_RESIDENCE_ID + "=?",
+                        new String[]{String.valueOf(id)},
+                null,null,null);
+                if (cursor != null){
+                    cursor.moveToFirst();}
+
+                Residence residence = new Residence();
+                residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnits(Integer.parseInt(cursor.getString(2)));
+                residence.setSizePerUnit(Integer.parseInt(cursor.getString(3)));
+                residence.setMonthlyRental(Double.parseDouble(cursor.getString(4)));
+                db.close();
+                return residence;
     }
 
     //void insertResidence(String address, int numOfUnits, int sizePerUnit, Double monthlyRental){
