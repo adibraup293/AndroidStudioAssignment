@@ -76,7 +76,7 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
                 }
             }
         });
-        //ListView lv = findViewById(R.id.residenceListView);
+        // ListView lv = findViewById(R.id.residenceListView);
         //ListAdapter adapter = new SimpleAdapter(ViewResidenceApplicantActivity.this, residenceList, R.layout.residencelist_row
         //        ,new String[]{"Residence ID", "Address", "num of unit", "size per unit", "Monthly rental" },
         //        new int[]{R.id.residenceID, R.id.address, R.id.numofunits, R.id.sizeperunit, R.id.monthlyrental});
