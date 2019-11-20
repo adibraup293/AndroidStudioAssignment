@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/night_img"
+    android:padding="8dp"
     tools:context=".MainActivity">
 
 
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         android:background="@drawable/bg_button"
         android:onClick="openSignUpPage"
         android:text="Sign up"
@@ -41,14 +42,30 @@
         android:id="@+id/grettingsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/gothammedium"
-        android:text="Welcome!"
+        android:gravity="center"
+        android:text="Welcome to MicroHousing System!"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/grettingsTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/gothammedium"
+        android:gravity="center"
+        android:text="What would you like to do?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grettingsTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

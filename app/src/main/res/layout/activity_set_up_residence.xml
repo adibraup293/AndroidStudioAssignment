@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetUpResidenceActivity"
-    android:background="@drawable/officer_background">
+    android:background="@drawable/officer_background"
+    android:padding="8dp"
+    tools:context=".SetUpResidenceActivity">
 
 
     <TextView
@@ -48,9 +49,9 @@
         android:drawableLeft="@drawable/rooms_icon"
         android:ems="10"
         android:hint="Enter number of units"
+        android:inputType="numberSigned"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/residenceAddressEditText" />
@@ -64,9 +65,9 @@
         android:drawableLeft="@drawable/sizeperunit_icon"
         android:ems="10"
         android:hint="Enter size per unit"
+        android:inputType="numberSigned"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numUnitEditText" />
@@ -80,9 +81,9 @@
         android:drawableLeft="@drawable/monthly_rental_icon"
         android:ems="10"
         android:hint="Enter monthly rental"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizePerUnitEditText" />
