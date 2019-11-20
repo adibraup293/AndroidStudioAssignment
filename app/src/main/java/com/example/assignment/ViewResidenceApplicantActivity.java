@@ -45,7 +45,7 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
         }
     }
 
-    //public void getAllResidence(){
+    // public void getAllResidence(){
     //    residence = null;
     //    List<Residence> residenceList = sqLiteHelperResidence.getAllResidence();
     //    ArrayAdapter adapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, residenceList);
