@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="SelectedListItem">#FF9800</color>
+    <color name="IslamicGreen">#009000</color>
+    <color name="Teal">#008080</color>
 </resources>

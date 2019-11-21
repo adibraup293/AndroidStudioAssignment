@@ -8,42 +8,27 @@
     android:padding="8dp"
     tools:context=".CreateApplicationsActivity">
 
-    <EditText
-        android:id="@+id/currentDateEditText"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="240dp"
-        android:background="@drawable/rounded_edit_text"
-        android:drawableLeft="@drawable/date_icon"
-        android:ems="10"
-        android:hint="Enter current Date dd/MM/YYYY"
-        android:inputType="textShortMessage"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
+    <Spinner
         android:id="@+id/monthEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="200dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/date_icon"
         android:ems="10"
         android:hint="Enter required month"
         android:inputType="textShortMessage"
         android:textAlignment="center"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentDateEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/applyAppTextView" />
 
     <EditText
         android:id="@+id/yearEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/date_icon"
         android:ems="10"
@@ -58,7 +43,7 @@
         android:id="@+id/applyApplication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/bg_button"
         android:onClick="createApplicationsButton"
         android:text="Apply"

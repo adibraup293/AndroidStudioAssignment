@@ -1,8 +1,5 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import java.util.List;
 
 public class ViewResidenceAdminActivity extends AppCompatActivity {
@@ -21,6 +21,10 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
     SQLiteHelperResidence sqLiteHelperResidence;
     Residence residence;
     AlertDialog.Builder alert;
+
+    public void back(View view) {
+        finish();
+    }
 
     @Override
     protected void onResume() {
@@ -72,7 +76,7 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_residence_admin);
 
         alert = new AlertDialog.Builder(this);
-        alert.setTitle("Delete Contact");
+        alert.setTitle("Delete Residence");
         alert.setMessage("Are you sure you want to delete?");
 
         sqLiteHelperResidence =new SQLiteHelperResidence(ViewResidenceAdminActivity.this);

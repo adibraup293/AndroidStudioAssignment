@@ -1,12 +1,18 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class UserHomeActivity extends AppCompatActivity {
+
+    public void back(View view) {
+        finish();
+        Intent mainActivity = new Intent(UserHomeActivity.this, MainActivity.class);
+        startActivity(mainActivity);
+    }
 
     public void openViewResidenceAplicant(View view){
         Intent viewResidenceApplicant = new Intent(UserHomeActivity.this, ViewResidenceApplicantActivity.class);

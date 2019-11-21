@@ -1,11 +1,10 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText usernameEditText;
@@ -23,6 +22,10 @@ public class SignUpActivity extends AppCompatActivity {
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
         sqliteHelperUser.insertUserDetails(username,password,name,email,monthlyIncome);
+        finish();
+    }
+
+    public void back(View view) {
         finish();
     }
 

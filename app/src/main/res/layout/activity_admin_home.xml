@@ -8,6 +8,20 @@
     android:padding="8dp"
     tools:context=".AdminHomeActivity">
 
+    <Button
+        android:id="@+id/backBtn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/bg_button"
+        android:onClick="back"
+        android:text="Back"
+        android:textColor="#FAFAFA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewApplications" />
+
     <TextView
         android:id="@+id/adminTextView"
         android:layout_width="wrap_content"
@@ -29,8 +43,10 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="172dp"
+        android:background="@drawable/bg_button"
         android:onClick="openRegisterResidence"
-        android:text="Set Up New Residence"
+        android:text="Set Up Residences"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +60,8 @@
         android:layout_marginTop="84dp"
         android:onClick="openViewApplications"
         android:text="View Applications"
+        android:background="@drawable/bg_button"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

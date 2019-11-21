@@ -1,12 +1,18 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class AdminHomeActivity extends AppCompatActivity {
+
+    public void back(View view) {
+        finish();
+        Intent mainActivity = new Intent(AdminHomeActivity.this, MainActivity.class);
+        startActivity(mainActivity);
+    }
 
     public void openRegisterResidence(View view){
         Intent setupResidenceIntent = new Intent(AdminHomeActivity.this, SetUpResidenceActivity.class);
