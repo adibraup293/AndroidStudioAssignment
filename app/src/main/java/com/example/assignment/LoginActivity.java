@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             //User Logged in successfully
 
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
+            userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
 
         } else if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             //Officer Logged in successfully
 
             Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+            adminHomeIntent.putExtra("username", username);
             startActivity(adminHomeIntent);
         } else {
             Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();

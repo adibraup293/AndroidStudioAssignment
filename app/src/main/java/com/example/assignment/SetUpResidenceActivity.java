@@ -1,12 +1,11 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SetUpResidenceActivity extends AppCompatActivity {
 
@@ -16,6 +15,10 @@ public class SetUpResidenceActivity extends AppCompatActivity {
     EditText residenceMonthlyRental;
 
     SQLiteHelperResidence sqLiteHelperResidence;
+
+    public void back(View view) {
+        finish();
+    }
 
     public void AddResidenceButton(View view){
         Residence residence = new Residence();
