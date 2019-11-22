@@ -24,7 +24,9 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
     SQLiteHelperResidence sqLiteHelperResidence;
     Residence residence;
 
-    ArrayList<HashMap<String, String>> residenceList;
+    public void back(View view) {
+        finish();
+    }
 
     @Override
     protected void onResume() {
@@ -47,13 +49,6 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-    // public void getAllResidence(){
-    //    residence = null;
-    //    List<Residence> residenceList = sqLiteHelperResidence.getAllResidence();
-    //    ArrayAdapter adapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, residenceList);
-    //    residenceListView.setAdapter(adapter);
-    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,30 +74,6 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
                 }
             }
         });
-        // ListView lv = findViewById(R.id.residenceListView);
-        //ListAdapter adapter = new SimpleAdapter(ViewResidenceApplicantActivity.this, residenceList, R.layout.residencelist_row
-        //        ,new String[]{"Residence ID", "Address", "num of unit", "size per unit", "Monthly rental" },
-        //        new int[]{R.id.residenceID, R.id.address, R.id.numofunits, R.id.sizeperunit, R.id.monthlyrental});
-
-        //lv.setAdapter(adapter);
-        //residenceListView = findViewById(R.id.residenceListView);
-
-        //residenceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        //        residence = (Residence) residenceListView.getItemAtPosition(position);
-
-         //       for (int i = 0; i < residenceListView.getChildCount(); i++) {
-         //           if (position == i) {
-         //               residenceListView.getChildAt(i).setBackgroundColor(ContextCompat.getColor(getApplicationContext(),
-         //                       R.color.SelectedListItem));
-         //           } else {
-         //               residenceListView.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
-         //           }
-         //       }
-         //   }
-        //});
-        //getAllResidence();
+        GetAllResidence();
     }
 }
