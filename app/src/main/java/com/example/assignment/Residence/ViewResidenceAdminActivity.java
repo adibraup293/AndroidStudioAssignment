@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -41,12 +42,14 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
         residenceListView.setAdapter(adapter);
     }
 
-    public void EditButton(View view) {
+    public void editButton(View view) {
 
         if (residence != null) {
             Intent intent = new Intent(this, EditResidenceActivity.class);
             intent.putExtra("id", residence.getResidenceID());
             startActivity(intent);
+        } else {
+            Toast.makeText(this, "Cannot found Residence", Toast.LENGTH_SHORT).show();
         }
     }
 
