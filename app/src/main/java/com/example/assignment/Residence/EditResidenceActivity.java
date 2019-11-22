@@ -36,7 +36,7 @@ public class EditResidenceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_residence);
 
-        sqLiteHelperResidence = new SQLiteHelperResidence(this);
+        sqLiteHelperResidence = new SQLiteHelperResidence(EditResidenceActivity.this);
 
         editAddress = findViewById(R.id.residenceAddressEditText);
         editNumOfUnit = findViewById(R.id.numUnitEditText);
