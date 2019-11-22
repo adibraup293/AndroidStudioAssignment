@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.User;
 
 public class User {
     private String name;

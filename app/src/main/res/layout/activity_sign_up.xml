@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/day_img"
     android:padding="8dp"
-    tools:context=".SignUpActivity">
+    tools:context=".User.SignUpActivity">
 
     <Button
         android:id="@+id/backBtn2"

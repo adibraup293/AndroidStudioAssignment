@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/officer_background"
     android:padding="8dp"
-    tools:context=".EditResidenceActivity">
+    tools:context=".Residence.EditResidenceActivity">
 
     <Button
         android:id="@+id/editResidenceButton"

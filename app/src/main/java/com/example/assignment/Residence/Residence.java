@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.Residence;
 
 public class Residence {
     private int residenceID;

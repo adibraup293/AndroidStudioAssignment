@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.Residence;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import com.example.assignment.R;
 
 import java.util.List;
 

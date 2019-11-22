@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.assignment.Admin.SQLiteHelperUserAdmin;
+import com.example.assignment.Admin.AdminHomeActivity;
+import com.example.assignment.R;
 
 public class LoginActivity extends AppCompatActivity {
 

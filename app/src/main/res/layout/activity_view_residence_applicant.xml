@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/user_background"
     android:padding="8dp"
-    tools:context=".ViewResidenceApplicantActivity">
+    tools:context=".Residence.ViewResidenceApplicantActivity">
 
     <ListView
         android:id="@+id/residenceListView"

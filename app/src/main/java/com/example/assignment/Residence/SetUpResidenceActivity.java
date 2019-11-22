@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.Residence;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.assignment.R;
 
 public class SetUpResidenceActivity extends AppCompatActivity {
 

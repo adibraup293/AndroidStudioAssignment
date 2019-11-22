@@ -6,6 +6,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.assignment.User.LoginActivity;
+import com.example.assignment.User.SignUpActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     public void openSignUpPage(View view) {

@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.assignment.MainActivity;
+import com.example.assignment.R;
+import com.example.assignment.Residence.ViewResidenceApplicantActivity;
 
 public class UserHomeActivity extends AppCompatActivity {
 

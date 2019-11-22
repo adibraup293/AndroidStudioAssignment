@@ -1,10 +1,12 @@
-package com.example.assignment;
+package com.example.assignment.User;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.assignment.R;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText usernameEditText;

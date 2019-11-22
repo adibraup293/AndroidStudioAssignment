@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.Residence;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.assignment.R;
+import com.example.assignment.Residence.Residence;
+import com.example.assignment.Residence.SQLiteHelperResidence;
 
 public class EditResidenceActivity extends AppCompatActivity {
 

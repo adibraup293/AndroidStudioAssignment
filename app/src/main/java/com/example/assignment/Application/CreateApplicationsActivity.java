@@ -1,4 +1,4 @@
-package com.example.assignment;
+package com.example.assignment.Application;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.assignment.R;
+import com.example.assignment.Residence.Residence;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

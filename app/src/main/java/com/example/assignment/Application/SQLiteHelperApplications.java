@@ -1,10 +1,15 @@
-package com.example.assignment;
+package com.example.assignment.Application;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.assignment.Residence.Residence;
+import com.example.assignment.Residence.SQLiteHelperResidence;
+import com.example.assignment.User.SQLiteHelperUser;
+import com.example.assignment.User.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

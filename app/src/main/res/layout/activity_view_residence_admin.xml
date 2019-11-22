@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/officer_background"
     android:padding="8dp"
-    tools:context=".ViewResidenceAdminActivity">
+    tools:context=".Residence.ViewResidenceAdminActivity">
 
     <TextView
         android:id="@+id/viewResidenceTF"
