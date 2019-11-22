@@ -44,9 +44,9 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
     public void EditButton(View view) {
 
         if (residence != null) {
-            Intent editResidenceIntent = new Intent(this, EditResidenceActivity.class);
-            editResidenceIntent.putExtra("id", residence.getResidenceID());
-            startActivity(editResidenceIntent);
+            Intent intent = new Intent(this, EditResidenceActivity.class);
+            intent.putExtra("id", residence.getResidenceID());
+            startActivity(intent);
         }
     }
 
