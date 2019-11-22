@@ -1,5 +1,6 @@
 package com.example.assignment.Application;
 
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -75,6 +76,52 @@ public class SQLiteHelperApplications extends SQLiteOpenHelper {
         db.insert(SQLiteHelperApplications.TABLE_APPLICATIONS, null, contentValues);
         db.close();
 
+    }
+
+    public List<Applications> GetAllApplication(){
+        List<Application> applicationList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + SQLiteHelperApplications.TABLE_APPLICATIONS;
+
+        Cursor cursor = db.rawQuery(selectAll, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                Applications application = new Applications();
+                application.setApplicationID(Integer.parseInt(cursor.getString(0)));
+                application.setApplicationDate(cursor.getString(1));
+                application.getRequiredMonth(cursor.getString(2));
+                application.getRequiredYear(Integer.parseInt(cursor.getString(3)));
+                application.getStatus(cursor.getString(4));
+
+
+                applicationList.add(application);
+            }while (cursor.moveToNext())
+        }
+        db.close();
+        return applicationList;
+
+        List<Residence> residenceList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + SQLiteHelperResidence.TABLE_RESIDENCE;
+
+        Cursor cursor = db.rawQuery(selectAll,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Residence residence = new Residence();
+                residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnits(cursor.getInt(2));
+                residence.setSizePerUnit(cursor.getInt(3));
+                residence.setMonthlyRental(cursor.getDouble(4));
+
+                residenceList.add(residence);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  residenceList;
     }
 
     public List<Applications> GetAllApplications(){
