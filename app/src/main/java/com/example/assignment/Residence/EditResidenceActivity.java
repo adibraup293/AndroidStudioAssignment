@@ -51,6 +51,7 @@ public class EditResidenceActivity extends AppCompatActivity {
                     editAddress.setText(residence.getAddress());
                     editNumOfUnit.setText(residence.getNumOfUnits());
                     editSizePerUnit.setText(residence.getSizePerUnit());
+                    editMonthlyRental.setText("");
         }
     }
 }

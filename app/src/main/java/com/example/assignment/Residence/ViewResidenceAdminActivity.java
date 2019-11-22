@@ -45,9 +45,9 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
     public void editButton(View view) {
 
         if (residence != null) {
-            Intent intent = new Intent(this, EditResidenceActivity.class);
-            intent.putExtra("id", residence.getResidenceID());
-            startActivity(intent);
+            Intent editIntent = new Intent(this, EditResidenceActivity.class);
+            editIntent.putExtra("id", residence.getResidenceID());
+            startActivity(editIntent);
         } else {
             Toast.makeText(this, "Cannot found Residence", Toast.LENGTH_SHORT).show();
         }
@@ -69,7 +69,6 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
                     GetAllResidence();
                 }
             });
-
 
             alert.show();
         }
@@ -103,7 +102,6 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
                 }
             }
         });
-
-
+        GetAllResidence();
     }
 }

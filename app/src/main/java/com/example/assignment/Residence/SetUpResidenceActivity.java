@@ -37,21 +37,6 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         finish();
     }
 
-    //public void addResidence (View view){
-    //    String address =residenceAddressEditText.getText().toString().trim();
-    //    int numOfUnits = Integer.parseInt(residenceNumOfUnits.getText().toString());
-    //    int sizePerUnit = Integer.parseInt(residenceSizePerUnit.getText().toString());
-    //    Double monthlyRental = Double.parseDouble(residenceMonthlyRental.getText().toString());
-
-    //    if (address.matches("")){
-    //        Toast.makeText(this, "Please enter address!", Toast.LENGTH_SHORT).show();
-    //    } else {
-    //        sqLiteHelperResidence.insertResidence(address, numOfUnits, sizePerUnit, monthlyRental);
-    //        Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
-    //    }
-    //    finish();
-    //}
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,5 +48,6 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         residenceNumOfUnits = findViewById(R.id.numUnitEditText);
         residenceSizePerUnit = findViewById(R.id.sizePerUnitEditText);
         residenceMonthlyRental = findViewById(R.id.monthlyRentalEditText);
+
     }
 }
