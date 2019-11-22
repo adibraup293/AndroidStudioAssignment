@@ -12,7 +12,7 @@
         android:id="@+id/backBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/bg_button"
         android:onClick="back"
         android:text="Back"
@@ -26,7 +26,7 @@
         android:id="@+id/usernameEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/username_icon"
         android:ems="10"
@@ -34,6 +34,7 @@
         android:inputType="textShortMessage"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,9 +102,9 @@
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/bg_button"
-        android:onClick="registerUser"
+        android:onClick="registerButton"
         android:text="Sign Up"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,5 +125,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_button"
+        android:orientation='horizontal'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpTextView">
+
+        <RadioButton
+            android:id="@+id/applicantBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Applicant"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/adminBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Housing Officer"
+            android:textColor="#FFFFFF" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

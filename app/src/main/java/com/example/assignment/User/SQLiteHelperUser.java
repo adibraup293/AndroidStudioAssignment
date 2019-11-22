@@ -84,19 +84,6 @@ public class SQLiteHelperUser extends SQLiteOpenHelper {
         return  userList;
     }
 
-    //Adding users into the users table
-    //public void addUser (User user){
-    //    SQLiteDatabase db = this.getWritableDatabase(); //get writable database
-    //    ContentValues values = new ContentValues(); //create content values to insert
-    //    values.put(KEY_USER_NAME, user.getUsername()); //Put username in  @values
-    //    values.put(KEY_PASSWORD, user.getPassword()); //Put password in  @values
-    //    values.put(KEY_NAME, user.getName()); //Put name in  @values
-    //    values.put(KEY_EMAIL, user.getEmail()); //Put email in  @values
-    //    values.put(KEY_MONTHLY_INCOME, user.getMonthlyIncome()); //Put monthly income in  @values
-    //    long todo_id = db.insert(TABLE_USERS, null, values); // insert row
-
-    //}
-
     //checking if there are users in the database
     public User Authenticate(User user){
         SQLiteDatabase db =this.getWritableDatabase();
