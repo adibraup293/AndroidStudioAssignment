@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.assignment.Admin.SQLiteHelperUserAdmin;
 import com.example.assignment.Admin.AdminHomeActivity;
+import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //authenticate User
         User currentUser = sqliteHelperUser.Authenticate(new User(username,password));
+        UserAdmin currentAdmin = sqliteHelperUserAdmin.AuthenticateAdmin(new UserAdmin(username,password));
 
         //check if authentication is successful or not
         if (currentUser !=null ){
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
 
-        } else if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+        } else if(currentAdmin !=null){
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 
