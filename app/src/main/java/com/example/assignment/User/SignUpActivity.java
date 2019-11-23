@@ -25,44 +25,37 @@ public class SignUpActivity extends AppCompatActivity {
     RadioButton adminBtn;
 
     Button signUpBtn1;
+    Button signUpBtn2;
 
     DatabaseHelper databaseHelper;
 
-    public void addUser(View view){
-        String username;
-        int usertype;
-        String password;
-        String name;
-        String email;
-        Double monthlyIncome; 
+    public void addAdmin(View view){
 
-        if (adminBtn.isChecked()) {
-            UserAdmin userAdmin = new UserAdmin();
+        UserAdmin userAdmin = new UserAdmin();
 
-            userAdmin.setUsername(usernameEditText.getText().toString().trim());
-            userAdmin.setUsertype(0);
-            userAdmin.setPassword(passwordEditText.getText().toString().trim());
-            userAdmin.setName(nameEditText.getText().toString().trim());
+        userAdmin.setUsername(usernameEditText.getText().toString().trim());
+        userAdmin.setUsertype(0);
+        userAdmin.setPassword(passwordEditText.getText().toString().trim());
+        userAdmin.setName(nameEditText.getText().toString().trim());
 
-            databaseHelper.AddAdminUser(userAdmin);
-            Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
-            finish();
-        } else if (applicantBtn.isChecked()) {
-            Applicant applicant = new Applicant();
+        databaseHelper.AddAdminUser(userAdmin);
+        Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
-            applicant.setUsername(usernameEditText.getText().toString().trim());
-            applicant.setUsertype(1);
-            applicant.setPassword(passwordEditText.getText().toString().trim());
-            applicant.setName(nameEditText.getText().toString().trim());
-            applicant.setEmail(emailEditText.getText().toString().trim());
-            applicant.setMonthlyIncome(Double.parseDouble(monthlyIncomeEditText.getText().toString()));
+    public void addApplicant(View view){
+        Applicant applicant = new Applicant();
 
-            databaseHelper.AddApplicantUser(applicant);
-            Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            Toast.makeText(this, "Application failed, please select an account type", Toast.LENGTH_LONG).show();
-        }
+        applicant.setUsername(usernameEditText.getText().toString().trim());
+        applicant.setUsertype(1);
+        applicant.setPassword(passwordEditText.getText().toString().trim());
+        applicant.setName(nameEditText.getText().toString().trim());
+        applicant.setEmail(emailEditText.getText().toString().trim());
+        applicant.setMonthlyIncome(Double.parseDouble(monthlyIncomeEditText.getText().toString()));
+
+        databaseHelper.AddApplicantUser(applicant);
+        Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
+        finish();
     }
     //public void registerUser(View view){
     //    String username =usernameEditText.getText().toString().trim();
@@ -101,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
         adminBtn = findViewById(R.id.adminBtn);
 
         signUpBtn1 = findViewById(R.id.signUpBtn);
+        signUpBtn2 = findViewById(R.id.signUpBtn2);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
@@ -113,6 +107,8 @@ public class SignUpActivity extends AppCompatActivity {
                     nameEditText.setVisibility(View.VISIBLE);
                     emailEditText.setVisibility(View.VISIBLE);
                     monthlyIncomeEditText.setVisibility(View.VISIBLE);
+                    signUpBtn1.setVisibility(View.VISIBLE);
+                    signUpBtn2.setVisibility(View.INVISIBLE);
 
                 } else if (checkedId == R.id.adminBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
@@ -120,6 +116,8 @@ public class SignUpActivity extends AppCompatActivity {
                     nameEditText.setVisibility(View.VISIBLE);
                     emailEditText.setVisibility(View.INVISIBLE);
                     monthlyIncomeEditText.setVisibility(View.INVISIBLE);
+                    signUpBtn1.setVisibility(View.INVISIBLE);
+                    signUpBtn2.setVisibility(View.VISIBLE);
                 }
             }
         });

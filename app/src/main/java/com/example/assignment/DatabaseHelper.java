@@ -214,6 +214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(KEY_RESIDENCE_NAME, residence.getResidenceName());
         contentValues.put(KEY_NUM_UNITS, residence.getNumOfUnits());
         contentValues.put(KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
         contentValues.put(KEY_MONTHLY_RENTAL, residence.getMonthlyRental());

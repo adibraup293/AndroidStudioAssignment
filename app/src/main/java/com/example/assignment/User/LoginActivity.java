@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.assignment.Admin.AdminHomeActivity;
+import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
@@ -29,11 +30,12 @@ public class LoginActivity extends AppCompatActivity {
 
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+        
         //authenticate User
         User currentUser = databaseHelper.loginUser( new User(username,password));
 
         //check if authentication is successful or not
-        if (currentUser.getUsertype() == 0) {
+        if (currentUser.getUsertype() == 1){
             Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
             //User Logged in successfully
 
@@ -41,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
 
-        } else if (currentUser.getUsertype() == 1) {
+        } else if (currentUser.getUsertype() == 0) {
             Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 

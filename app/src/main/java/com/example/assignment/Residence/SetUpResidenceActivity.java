@@ -13,6 +13,7 @@ import com.example.assignment.R;
 public class SetUpResidenceActivity extends AppCompatActivity {
 
     EditText residenceAddressEditText;
+    EditText residenceName;
     EditText residenceNumOfUnits;
     EditText residenceSizePerUnit;
     EditText residenceMonthlyRental;
@@ -26,6 +27,7 @@ public class SetUpResidenceActivity extends AppCompatActivity {
     public void AddResidenceButton(View view){
         Residence residence = new Residence();
         residence.setAddress(residenceAddressEditText.getText().toString().trim());
+        residence.setResidenceName(residenceName.getText().toString().trim());
         residence.setNumOfUnits(Integer.parseInt(residenceNumOfUnits.getText().toString()));
         residence.setSizePerUnit(Integer.parseInt(residenceSizePerUnit.getText().toString()));
         residence.setMonthlyRental(Double.parseDouble(residenceMonthlyRental.getText().toString()));
@@ -46,6 +48,7 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(SetUpResidenceActivity.this);
 
         residenceAddressEditText = findViewById(R.id.residenceAddressEditText);
+        residenceName =findViewById(R.id.residenceNameEditText);
         residenceNumOfUnits = findViewById(R.id.numUnitEditText);
         residenceSizePerUnit = findViewById(R.id.sizePerUnitEditText);
         residenceMonthlyRental = findViewById(R.id.monthlyRentalEditText);
