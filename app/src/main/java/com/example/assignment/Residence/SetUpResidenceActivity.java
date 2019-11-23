@@ -19,8 +19,6 @@ public class SetUpResidenceActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
-    //SQLiteHelperResidence sqLiteHelperResidence;
-
     public void back(View view) {
         finish();
     }

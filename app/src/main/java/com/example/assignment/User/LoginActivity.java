@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.assignment.Admin.SQLiteHelperUserAdmin;
 import com.example.assignment.Admin.AdminHomeActivity;
 import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.DatabaseHelper;
@@ -34,18 +33,16 @@ public class LoginActivity extends AppCompatActivity {
 
         //authenticate User
         User currentUser = databaseHelper.Authenticate(new User(username,password));
-        UserAdmin currentAdmin = databaseHelper.AuthenticateAdmin(new UserAdmin(username,password));
 
         //check if authentication is successful or not
-        if (currentUser !=null ){
+        if (currentUser instanceof Applicant){
             Toast.makeText(this, "Logging in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
             //User Logged in successfully
 
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
             userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
-
-        } else if(currentAdmin !=null){
+        } else if (currentUser instanceof UserAdmin){
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 

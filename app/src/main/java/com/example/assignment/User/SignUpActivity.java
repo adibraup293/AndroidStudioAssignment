@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.assignment.Admin.SQLiteHelperUserAdmin;
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
@@ -29,31 +28,46 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     DatabaseHelper databaseHelper;
-    //SQLiteHelperUser sqliteHelperUser;
-    //SQLiteHelperUserAdmin sqliteUserAdmin;
 
 
-    public void registerUser(View view){
+    public void addUser(View view){
         String username =usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
-        Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
-        finish();
+        if (applicantBtn.isChecked()){
+            databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
+            Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            databaseHelper.createUserAdminDetails(username,password,name);
+            Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
+    //public void registerUser(View view){
+    //    String username =usernameEditText.getText().toString().trim();
+    //    String password = passwordEditText.getText().toString().trim();
+    //    String name = nameEditText.getText().toString().trim();
+    //    String email = emailEditText.getText().toString().trim();
+    //    Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-    public void registerAdmin(View view){
-        String username =usernameEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String name = nameEditText.getText().toString().trim();
+    //    databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
+    //    Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
+    //    finish();
+    //}
 
-        databaseHelper.createUserAdminDetails(username,password,name);
-        Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
-        finish();
-    }
+    //public void registerAdmin(View view){
+    //    String username =usernameEditText.getText().toString().trim();
+    //    String password = passwordEditText.getText().toString().trim();
+    //   String name = nameEditText.getText().toString().trim();
+
+    //    databaseHelper.createUserAdminDetails(username,password,name);
+    //    Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
+    //    finish();
+    //}
 
     public void back(View view) {
         finish();
@@ -99,9 +113,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         databaseHelper = new DatabaseHelper(SignUpActivity.this);
-        //sqliteHelperUser = new SQLiteHelperUser(SignUpActivity.this);
-
-        //sqliteUserAdmin = new SQLiteHelperUserAdmin(SignUpActivity.this);
 
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);

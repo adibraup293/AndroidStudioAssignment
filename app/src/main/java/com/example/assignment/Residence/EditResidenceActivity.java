@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
-import com.example.assignment.Residence.Residence;
-import com.example.assignment.Residence.SQLiteHelperResidence;
 
 public class EditResidenceActivity extends AppCompatActivity {
 
-    //SQLiteHelperResidence sqLiteHelperResidence;
     DatabaseHelper databaseHelper;
     EditText editAddress;
     EditText editSizePerUnit;
