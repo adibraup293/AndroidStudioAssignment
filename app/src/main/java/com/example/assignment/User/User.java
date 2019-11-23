@@ -1,10 +1,10 @@
 package com.example.assignment.User;
 
 public class User {
-    private String name;
     private String username;
     private int usertype;
     private String password;
+    private String name;
 
     public User() {
     }
@@ -14,7 +14,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String username, String password) {
+    public User(String name, int usertype, String username, String password) {
+        this.setUsertype(usertype);
         this.setName(name);
         this.setUsername(username);
         this.setPassword(password);

@@ -3,7 +3,15 @@ package com.example.assignment.Admin;
 import com.example.assignment.User.User;
 
 public class UserAdmin extends User {
+    private int usertype = 0;
     private int staffID;
+
+    public UserAdmin() {
+    }
+
+    public UserAdmin(int staffID) {
+        this.staffID = staffID;
+    }
 
     @Override
     public int getUsertype() {
@@ -13,15 +21,6 @@ public class UserAdmin extends User {
     @Override
     public void setUsertype(int usertype) {
         this.usertype = usertype;
-    }
-
-    private int usertype=0;
-
-    public UserAdmin() {
-    }
-
-    public UserAdmin(int staffID) {
-        this.staffID = staffID;
     }
 
     public int getStaffID() {
