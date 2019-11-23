@@ -27,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
-
     public void addUser(View view){
         String username =usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -35,13 +34,13 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        if (applicantBtn.isChecked()){
-            databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
-            Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
-            finish();
-        }else {
+        if (emailEditText.equals("") && monthlyIncomeEditText.equals("")){
             databaseHelper.createUserAdminDetails(username,password,name);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
+            Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -94,7 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
                     nameEditText.setVisibility(View.VISIBLE);
                     emailEditText.setVisibility(View.VISIBLE);
                     monthlyIncomeEditText.setVisibility(View.VISIBLE);
-                    signUpBtn1.setVisibility(View.VISIBLE);
 
                 } else if (checkedId == R.id.adminBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
@@ -102,7 +100,6 @@ public class SignUpActivity extends AppCompatActivity {
                     nameEditText.setVisibility(View.VISIBLE);
                     emailEditText.setVisibility(View.INVISIBLE);
                     monthlyIncomeEditText.setVisibility(View.INVISIBLE);
-                    signUpBtn1.setVisibility(View.VISIBLE);
                 }
             }
         });
