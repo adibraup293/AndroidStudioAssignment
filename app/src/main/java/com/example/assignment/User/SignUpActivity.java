@@ -28,17 +28,17 @@ public class SignUpActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     public void addUser(View view){
-        String username =usernameEditText.getText().toString().trim();
+        String username = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        if (emailEditText.equals("") && monthlyIncomeEditText.equals("")){
+        if (adminBtn.isSelected()) {
             databaseHelper.createUserAdminDetails(username,password,name);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
-        }else {
+        } else {
             databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
             Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
             finish();
