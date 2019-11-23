@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        if (adminBtn.isSelected()) {
+        if (email.equalsIgnoreCase("") && monthlyIncome.isNaN()) {
             databaseHelper.createUserAdminDetails(username,password,name);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
