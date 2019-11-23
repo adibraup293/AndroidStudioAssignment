@@ -4,16 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 import com.example.assignment.Residence.Residence;
 import com.example.assignment.Residence.SQLiteHelperResidence;
 
 public class EditResidenceActivity extends AppCompatActivity {
 
-    SQLiteHelperResidence sqLiteHelperResidence;
+    //SQLiteHelperResidence sqLiteHelperResidence;
+    DatabaseHelper databaseHelper;
     EditText editAddress;
     EditText editSizePerUnit;
     EditText editNumOfUnit;
@@ -27,7 +30,7 @@ public class EditResidenceActivity extends AppCompatActivity {
         residence.setSizePerUnit(Integer.parseInt(editSizePerUnit.getText().toString()));
         residence.setMonthlyRental(Double.parseDouble(editMonthlyRental.getText().toString()));
 
-        sqLiteHelperResidence.UpdateResidence(residence);
+        databaseHelper.UpdateResidence(residence);
         finish();
     }
 
@@ -36,7 +39,7 @@ public class EditResidenceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_residence);
 
-        sqLiteHelperResidence = new SQLiteHelperResidence(EditResidenceActivity.this);
+        databaseHelper = new DatabaseHelper(EditResidenceActivity.this);
 
         editAddress = findViewById(R.id.residenceAddressEditText);
         editNumOfUnit = findViewById(R.id.numUnitEditText);
@@ -47,7 +50,7 @@ public class EditResidenceActivity extends AppCompatActivity {
         int id = intent.getIntExtra("id", -1);
 
         if (id != -1){
-            residence = sqLiteHelperResidence.getResidence(id);
+            residence = databaseHelper.getResidence(id);
                     editAddress.setText(residence.getAddress());
                     editNumOfUnit.setText(residence.getNumOfUnits());
                     editSizePerUnit.setText(residence.getSizePerUnit());

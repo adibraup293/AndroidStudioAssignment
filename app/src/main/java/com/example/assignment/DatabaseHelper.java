@@ -1,10 +1,23 @@
 package com.example.assignment;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.assignment.Admin.UserAdmin;
+import com.example.assignment.Application.Applications;
+import com.example.assignment.Residence.Residence;
+import com.example.assignment.User.User;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Logcat tag
@@ -73,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_FROM_DATE + " DATE,"
             + KEY_DURATION + " TEXT,"
             + KEY_UNIT_ID + " INTEGER,"
-            + KEY_APPLICATION_ID + " INTEGER"
+            + KEY_APPLICATION_ID + " INTEGER,"
             + " FOREIGN KEY (" + KEY_UNIT_ID + ") REFERENCES " + TABLE_UNIT + "(" + KEY_UNIT_ID + "));"
             + " FOREIGN KEY (" + KEY_APPLICATION_ID + ") REFERENCES " + TABLE_APPLICATIONS + "(" + KEY_APPLICATION_ID + "));";
 
@@ -88,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_USERNAME + " TEXT,"
             + KEY_RESIDENCE_ID + " INTEGER,"
             + KEY_UNIT_NO + " INTEGER,"
-            + KEY_DURATION + " TEXT"
+            + KEY_DURATION + " TEXT,"
             + " FOREIGN KEY (" + KEY_USERNAME + ") REFERENCES " + TABLE_USERS + "(" + KEY_USERNAME + "));"
             + " FOREIGN KEY (" + KEY_RESIDENCE_ID + ") REFERENCES " + TABLE_RESIDENCE + "(" + KEY_RESIDENCE_ID + "));";
 
@@ -101,9 +114,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_NUM_UNITS + " TEXT,"
             + KEY_SIZE_PER_UNIT + " TEXT,"
             + KEY_MONTHLY_RENTAL + " TEXT,"
-            + KEY_USERNAME + " TEXT"
-            + " FOREIGN KEY (" + KEY_USERNAME + ") REFERENCES " + TABLE_USERS + "(" + KEY_USERNAME + "));"
-            + " ) ";
+            + KEY_USERNAME + " TEXT,"
+            + " FOREIGN KEY (" + KEY_USERNAME + ") REFERENCES " + TABLE_USERS + "(" + KEY_USERNAME + "));";
 
     // Creating Units table
     private static final String SQL_TABLE_UNIT = " CREATE TABLE " + TABLE_UNIT //SQL for creating unit table
@@ -111,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_UNIT_ID + " INTEGER PRIMARY KEY,"
             + KEY_RESIDENCE_ID + " INTEGER,"
             + KEY_UNIT_NO + " INTEGER,"
-            + KEY_AVAILABILITY + " TEXT"
+            + KEY_AVAILABILITY + " TEXT,"
             + " FOREIGN KEY (" + KEY_RESIDENCE_ID + ") REFERENCES " + TABLE_RESIDENCE + "(" + KEY_RESIDENCE_ID + "));";
 
     // Creating Users Table
@@ -125,20 +137,209 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_MONTHLY_INCOME + " DOUBLE"
             + " ) ";
 
-    //@adib Help me continue from this part onwards thanks man
-    //Also help me check if I configured the database correctly
-
-    public DatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        //Create Table when oncreate gets called
+        sqLiteDatabase.execSQL(SQL_TABLE_USERS);
+        sqLiteDatabase.execSQL(SQL_TABLE_ALLOCATION);
+        sqLiteDatabase.execSQL(SQL_TABLE_APPLICATIONS);
+        sqLiteDatabase.execSQL(SQL_TABLE_RESIDENCE);
+        sqLiteDatabase.execSQL(SQL_TABLE_UNIT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        //drop table to create new one if database version updated
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_USERS);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ALLOCATION);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_APPLICATIONS);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_RESIDENCE);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_UNIT);
+    }
+
+    // Adding new User Details
+    public void insertUserDetails(String username, String password, String name, String email, Double monthlyIncome){
+        //Get the Data Repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Create a new map of values, where column names are the keys
+        ContentValues cValues = new ContentValues();
+        cValues.put(KEY_USERNAME, username);
+        cValues.put(KEY_PASSWORD, password);
+        cValues.put(KEY_NAME, name);
+        cValues.put(KEY_EMAIL, email);
+        cValues.put(KEY_MONTHLY_INCOME, monthlyIncome);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(TABLE_USERS,null, cValues);
+    }
+
+    //checking if there are users in the database
+    public User Authenticate(User user){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, //selecting the users table
+                new String[] {KEY_USERNAME, KEY_PASSWORD},
+                KEY_USERNAME + "=?",
+                new String[]{user.getUsername()},//Where clause
+                null,null,null);
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() >0 ){
+            //if cursor has value then in user database there is user associated with this given username
+            User user1 = new User(cursor.getString(0),cursor.getString(1));
+
+            //Match both passwords check they are same or not
+            if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
+                return user1;
+            }
+        }
+        //if user password does not matches or there is no record with that username then return
+        return null;
+
+    }
+
+    // Adding new Residence Details
+    public void addResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(KEY_NUM_UNITS, residence.getNumOfUnits());
+        contentValues.put(KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
+        contentValues.put(KEY_MONTHLY_RENTAL, residence.getMonthlyRental());
+
+        db.insert(TABLE_RESIDENCE, null, contentValues);
+        db.close();
+
+    }
+
+    public Residence getResidence(int id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_RESIDENCE,
+                new String[]{KEY_RESIDENCE_ID,
+                        KEY_RESIDENCE_ADDRESS,
+                        KEY_NUM_UNITS,
+                        KEY_SIZE_PER_UNIT,
+                        KEY_MONTHLY_RENTAL},
+                KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,null,null);
+        if (cursor != null){
+            cursor.moveToFirst();}
+
+        Residence residence = new Residence();
+        residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+        residence.setAddress(cursor.getString(1));
+        residence.setNumOfUnits(Integer.parseInt(cursor.getString(2)));
+        residence.setSizePerUnit(Integer.parseInt(cursor.getString(3)));
+        residence.setMonthlyRental(Double.parseDouble(cursor.getString(4)));
+        db.close();
+        return residence;
+    }
+
+    public List<Residence> GetAllResidences(){
+
+        List<Residence> residenceList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + TABLE_RESIDENCE;
+
+        Cursor cursor = db.rawQuery(selectAll,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Residence residence = new Residence();
+                residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnits(cursor.getInt(2));
+                residence.setSizePerUnit(cursor.getInt(3));
+                residence.setMonthlyRental(cursor.getDouble(4));
+
+                residenceList.add(residence);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  residenceList;
+    }
+
+    public void DeleteResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_RESIDENCE,
+                KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(residence.getResidenceID())});
+        db.close();
+    }
+
+    public int UpdateResidence(Residence residence){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(KEY_NUM_UNITS, residence.getNumOfUnits());
+        contentValues.put(KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
+        contentValues.put(KEY_MONTHLY_RENTAL, residence.getMonthlyRental());
+
+        return db.update(TABLE_RESIDENCE,contentValues,
+                KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(residence.getResidenceID())});
+    }
+
+    // Adding new User Details
+    public void createUserAdminDetails(String username, String password, String name){
+        //Get the Data Repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Create a new map of values, where column names are the keys
+        ContentValues cValues = new ContentValues();
+        cValues.put(KEY_USERNAME, username);
+        cValues.put(KEY_PASSWORD, password);
+        cValues.put(KEY_NAME, name);
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(TABLE_USERS,null, cValues);
+    }
+
+    //checking if there are user admin in the database
+    public UserAdmin AuthenticateAdmin(UserAdmin userAdmin){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, //selecting the users table
+                new String[] {KEY_USERNAME, KEY_PASSWORD},
+                KEY_USERNAME + "=?",
+                new String[]{userAdmin.getUsername()},//Where clause
+                null,null,null);
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() >0 ){
+            //if cursor has value then in user database there is user associated with this given username
+            UserAdmin userAdmin1 = new UserAdmin(cursor.getString(0),cursor.getString(1));
+
+            //Match both passwords check they are same or not
+            if (userAdmin.getPassword().equalsIgnoreCase(userAdmin1.getPassword())) {
+                return userAdmin1;
+            }
+        }
+        //if user password does not matches or there is no record with that username then return
+        return null;
+
+    }
+
+    private static Date date = new Date();
+    private static final SimpleDateFormat formatter = new SimpleDateFormat(
+            "MM/dd/yyyy", Locale.ENGLISH);
+    private static String currentDate = formatter.format(date);
+
+    // Adding new Application Details
+    public void addApplications(Applications applications){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_APPLICATION_DATE, formatter.format(applications.getApplicationDate()));
+        contentValues.put(KEY_REQUIRED_MONTH, applications.getRequiredMonth());
+        contentValues.put(KEY_REQUIRED_YEAR, applications.getRequiredYear());
+        contentValues.put(KEY_STATUS, applications.getStatus());
+        db.insert(TABLE_APPLICATIONS, null, contentValues);
+        db.close();
 
     }
 

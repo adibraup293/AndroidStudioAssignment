@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.assignment.Admin.SQLiteHelperUserAdmin;
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -27,8 +28,9 @@ public class SignUpActivity extends AppCompatActivity {
     Button signUpBtn2;
 
 
-    SQLiteHelperUser sqliteHelperUser;
-    SQLiteHelperUserAdmin sqliteUserAdmin;
+    DatabaseHelper databaseHelper;
+    //SQLiteHelperUser sqliteHelperUser;
+    //SQLiteHelperUserAdmin sqliteUserAdmin;
 
 
     public void registerUser(View view){
@@ -38,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
 
-        sqliteHelperUser.insertUserDetails(username,password,name,email,monthlyIncome);
+        databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
         Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -48,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         String name = nameEditText.getText().toString().trim();
 
-        sqliteUserAdmin.createUserAdminDetails(username,password,name);
+        databaseHelper.createUserAdminDetails(username,password,name);
         Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -96,9 +98,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        sqliteHelperUser = new SQLiteHelperUser(SignUpActivity.this);
+        databaseHelper = new DatabaseHelper(SignUpActivity.this);
+        //sqliteHelperUser = new SQLiteHelperUser(SignUpActivity.this);
 
-        sqliteUserAdmin = new SQLiteHelperUserAdmin(SignUpActivity.this);
+        //sqliteUserAdmin = new SQLiteHelperUserAdmin(SignUpActivity.this);
 
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);

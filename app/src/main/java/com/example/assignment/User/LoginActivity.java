@@ -12,14 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.assignment.Admin.SQLiteHelperUserAdmin;
 import com.example.assignment.Admin.AdminHomeActivity;
 import com.example.assignment.Admin.UserAdmin;
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText usernameEditText;
     EditText passwordEditText;
-    SQLiteHelperUser sqliteHelperUser;
-    SQLiteHelperUserAdmin sqliteHelperUserAdmin;
+    DatabaseHelper databaseHelper;
     Button loginButton;
 
     public void back(View view) {
@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
 
         //authenticate User
-        User currentUser = sqliteHelperUser.Authenticate(new User(username,password));
-        UserAdmin currentAdmin = sqliteHelperUserAdmin.AuthenticateAdmin(new UserAdmin(username,password));
+        User currentUser = databaseHelper.Authenticate(new User(username,password));
+        UserAdmin currentAdmin = databaseHelper.AuthenticateAdmin(new UserAdmin(username,password));
 
         //check if authentication is successful or not
         if (currentUser !=null ){
@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.loginBtn);
 
-        sqliteHelperUser = new SQLiteHelperUser(this);
-        sqliteHelperUserAdmin = new SQLiteHelperUserAdmin(this);
+        databaseHelper = new DatabaseHelper(this);
     }
 }

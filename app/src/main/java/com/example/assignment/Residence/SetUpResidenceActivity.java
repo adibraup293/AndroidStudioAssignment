@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
 public class SetUpResidenceActivity extends AppCompatActivity {
@@ -16,7 +17,9 @@ public class SetUpResidenceActivity extends AppCompatActivity {
     EditText residenceSizePerUnit;
     EditText residenceMonthlyRental;
 
-    SQLiteHelperResidence sqLiteHelperResidence;
+    DatabaseHelper databaseHelper;
+
+    //SQLiteHelperResidence sqLiteHelperResidence;
 
     public void back(View view) {
         finish();
@@ -29,11 +32,11 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         residence.setSizePerUnit(Integer.parseInt(residenceSizePerUnit.getText().toString()));
         residence.setMonthlyRental(Double.parseDouble(residenceMonthlyRental.getText().toString()));
 
-        sqLiteHelperResidence.addResidence(residence);
+        databaseHelper.addResidence(residence);
 
         Toast.makeText(this, "Residence successfully created", Toast.LENGTH_SHORT).show();
 
-        sqLiteHelperResidence.close();
+        databaseHelper.close();
         finish();
     }
 
@@ -42,7 +45,7 @@ public class SetUpResidenceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up_residence);
 
-        sqLiteHelperResidence = new SQLiteHelperResidence(SetUpResidenceActivity.this);
+        databaseHelper = new DatabaseHelper(SetUpResidenceActivity.this);
 
         residenceAddressEditText = findViewById(R.id.residenceAddressEditText);
         residenceNumOfUnits = findViewById(R.id.numUnitEditText);

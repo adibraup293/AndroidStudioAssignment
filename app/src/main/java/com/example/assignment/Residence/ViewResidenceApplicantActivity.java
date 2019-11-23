@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.assignment.Application.CreateApplicationsActivity;
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 public class ViewResidenceApplicantActivity extends AppCompatActivity {
 
     ListView residenceListView;
-    SQLiteHelperResidence sqLiteHelperResidence;
+    DatabaseHelper databaseHelper;
     Residence residence;
 
     public void back(View view) {
@@ -36,7 +37,7 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
     }
 
     public void GetAllResidence() {
-        List<Residence> residenceList = sqLiteHelperResidence.GetAllResidences();
+        List<Residence> residenceList = databaseHelper.GetAllResidences();
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, residenceList);
         residenceListView.setAdapter(adapter);
     }
@@ -55,7 +56,7 @@ public class ViewResidenceApplicantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_residence_applicant);
 
-        sqLiteHelperResidence =new SQLiteHelperResidence(ViewResidenceApplicantActivity.this);
+        databaseHelper = new DatabaseHelper(ViewResidenceApplicantActivity.this);
         residenceListView = findViewById(R.id.residenceListView);
 
         residenceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 import com.example.assignment.Residence.Residence;
 
@@ -30,7 +31,7 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
     private Spinner requiredMonth;
 
 
-    SQLiteHelperApplications sqLiteHelperApplications;
+    DatabaseHelper databaseHelper;
 
     public void createApplicationsButton(View view){
         Applications applications = new Applications();
@@ -38,11 +39,11 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
         //applications.setRequiredMonth(requiredMonth.);
         applications.setRequiredYear(Integer.parseInt(requiredYear.getText().toString()));
 
-        sqLiteHelperApplications.addApplications(applications);
+        databaseHelper.addApplications(applications);
 
         Toast.makeText(this, "You have applied an application", Toast.LENGTH_SHORT).show();
 
-        sqLiteHelperApplications.close();
+        databaseHelper.close();
         finish();
     }
 
@@ -112,6 +113,6 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
 
         requiredYear = findViewById(R.id.yearEditText);
 
-        sqLiteHelperApplications = new SQLiteHelperApplications(this);
+        databaseHelper = new DatabaseHelper(CreateApplicationsActivity.this);
     }
 }
