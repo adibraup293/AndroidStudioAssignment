@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         //authenticate User
-        User currentUser = databaseHelper.loginUser(new User(username,password));
+        User currentUser = databaseHelper.loginUser( new User(username,password));
 
         //check if authentication is successful or not
         if (currentUser instanceof Applicant){

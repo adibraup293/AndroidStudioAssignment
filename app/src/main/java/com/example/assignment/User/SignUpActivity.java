@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
@@ -35,10 +36,13 @@ public class SignUpActivity extends AppCompatActivity {
         Double monthlyIncome; 
 
         if (adminBtn.isChecked()) {
-            username = usernameEditText.getText().toString().trim();
-            password = passwordEditText.getText().toString().trim();
-            name = nameEditText.getText().toString().trim();
-            databaseHelper.createUserAdminDetails(username, password, name);
+            UserAdmin userAdmin = new UserAdmin();
+
+            userAdmin.setUsername(usernameEditText.getText().toString().trim());
+            userAdmin.setPassword(passwordEditText.getText().toString().trim());
+            userAdmin.setName(nameEditText.getText().toString().trim());
+
+            databaseHelper.AddAdminUser(userAdmin);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
         } else if (applicantBtn.isChecked()) {

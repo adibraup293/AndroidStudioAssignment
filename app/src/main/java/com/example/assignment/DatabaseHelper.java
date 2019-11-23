@@ -313,18 +313,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(residence.getResidenceID())});
     }
 
-    // Adding new User Details
-    public void createUserAdminDetails(String username, String password, String name) {
+
+    //public void createUserAdminDetails(String username, String password, String name) {
         //Get the Data Repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+    //    SQLiteDatabase db = this.getWritableDatabase();
 
         //Create a new map of values, where column names are the keys
-        ContentValues cValues = new ContentValues();
-        cValues.put(KEY_USERNAME, username);
-        cValues.put(KEY_PASSWORD, password);
-        cValues.put(KEY_NAME, name);
+    //    ContentValues cValues = new ContentValues();
+    //    cValues.put(KEY_USERNAME, username);
+     //   cValues.put(KEY_PASSWORD, password);
+    //    cValues.put(KEY_NAME, name);
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE_USERS,null, cValues);
+    //    long newRowId = db.insert(TABLE_USERS,null, cValues);
+    //}
+
+    // Adding new User Details
+    public void AddAdminUser(UserAdmin admin) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_USERNAME, admin.getUsername());
+        contentValues.put(KEY_PASSWORD, admin.getPassword());
+        contentValues.put(KEY_NAME, admin.getName());
+
+        long newRowId = db.insert(TABLE_USERS, null, contentValues);
+        db.close();
     }
 
     //checking if there are user admin in the database
