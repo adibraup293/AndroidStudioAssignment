@@ -24,8 +24,6 @@ public class SignUpActivity extends AppCompatActivity {
     RadioButton adminBtn;
 
     Button signUpBtn1;
-    Button signUpBtn2;
-
 
     DatabaseHelper databaseHelper;
 
@@ -84,7 +82,6 @@ public class SignUpActivity extends AppCompatActivity {
         adminBtn = findViewById(R.id.adminBtn);
 
         signUpBtn1 = findViewById(R.id.signUpBtn);
-        signUpBtn2 = findViewById(R.id.signUpBtn2);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
@@ -98,7 +95,6 @@ public class SignUpActivity extends AppCompatActivity {
                     emailEditText.setVisibility(View.VISIBLE);
                     monthlyIncomeEditText.setVisibility(View.VISIBLE);
                     signUpBtn1.setVisibility(View.VISIBLE);
-                    signUpBtn2.setVisibility(View.INVISIBLE);
 
                 } else if (checkedId == R.id.adminBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
@@ -107,7 +103,6 @@ public class SignUpActivity extends AppCompatActivity {
                     emailEditText.setVisibility(View.INVISIBLE);
                     monthlyIncomeEditText.setVisibility(View.INVISIBLE);
                     signUpBtn1.setVisibility(View.INVISIBLE);
-                    signUpBtn2.setVisibility(View.VISIBLE);
                 }
             }
         });
