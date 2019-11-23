@@ -102,7 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
                     nameEditText.setVisibility(View.VISIBLE);
                     emailEditText.setVisibility(View.INVISIBLE);
                     monthlyIncomeEditText.setVisibility(View.INVISIBLE);
-                    signUpBtn1.setVisibility(View.INVISIBLE);
+                    signUpBtn1.setVisibility(View.VISIBLE);
                 }
             }
         });

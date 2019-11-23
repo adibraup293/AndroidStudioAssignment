@@ -310,16 +310,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_USERNAME + "=?",
                 new String[]{userAdmin.getUsername()},//Where clause
                 null,null,null);
-
-        if (cursor != null && cursor.moveToFirst() && cursor.getCount() >0 ){
-            //if cursor has value then in user database there is user associated with this given username
-            UserAdmin userAdmin1 = new UserAdmin(cursor.getString(0),cursor.getString(1));
-
-            //Match both passwords check they are same or not
-            if (userAdmin.getPassword().equalsIgnoreCase(userAdmin1.getPassword())) {
-                return userAdmin1;
-            }
-        }
         //if user password does not matches or there is no record with that username then return
         return null;
 
