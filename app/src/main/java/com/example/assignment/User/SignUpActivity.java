@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
             Applicant applicant = new Applicant();
 
             applicant.setUsername(usernameEditText.getText().toString().trim());
-            applicant.setUsertype(0);
+            applicant.setUsertype(1);
             applicant.setPassword(passwordEditText.getText().toString().trim());
             applicant.setName(nameEditText.getText().toString().trim());
             applicant.setEmail(emailEditText.getText().toString().trim());
