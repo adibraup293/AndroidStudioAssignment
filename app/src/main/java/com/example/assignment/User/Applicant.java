@@ -4,10 +4,25 @@ public class Applicant extends User{
     private String email;
     private Double monthlyIncome;
 
+    @Override
+    public int getUsertype() {
+        return usertype;
+    }
+
+    @Override
+    public void setUsertype(int usertype) {
+        this.usertype = usertype;
+    }
+
+    private int usertype=1;
+
     public Applicant(String name, String username, String password, String email, Double monthlyIncome) {
         super(name, username, password);
         this.email = email;
         this.monthlyIncome = monthlyIncome;
+    }
+
+    public Applicant() {
     }
 
     public String getEmail() {

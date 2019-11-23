@@ -48,12 +48,16 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
         } else if (applicantBtn.isChecked()) {
-            username = usernameEditText.getText().toString().trim();
-            password = passwordEditText.getText().toString().trim();
-            name = nameEditText.getText().toString().trim();
-            email = emailEditText.getText().toString().trim();
-            monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
-            databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
+            Applicant applicant = new Applicant();
+
+            applicant.setUsername(usernameEditText.getText().toString().trim());
+            applicant.setUsertype(0);
+            applicant.setPassword(passwordEditText.getText().toString().trim());
+            applicant.setName(nameEditText.getText().toString().trim());
+            applicant.setEmail(emailEditText.getText().toString().trim());
+            applicant.setMonthlyIncome(Double.parseDouble(monthlyIncomeEditText.getText().toString()));
+
+            databaseHelper.AddApplicantUser(applicant);
             Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
             finish();
         } else {

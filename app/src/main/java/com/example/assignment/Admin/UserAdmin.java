@@ -5,6 +5,18 @@ import com.example.assignment.User.User;
 public class UserAdmin extends User {
     private int staffID;
 
+    @Override
+    public int getUsertype() {
+        return usertype;
+    }
+
+    @Override
+    public void setUsertype(int usertype) {
+        this.usertype = usertype;
+    }
+
+    private int usertype=0;
+
     public UserAdmin() {
     }
 

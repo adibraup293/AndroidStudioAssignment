@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
             userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
+
         } else if (currentUser.getUsertype() == 0) {
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
             adminHomeIntent.putExtra("username", username);
             startActivity(adminHomeIntent);
+
         } else {
             Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();
             //User Logged in failed.

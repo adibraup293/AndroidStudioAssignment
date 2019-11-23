@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.Application.Applications;
 import com.example.assignment.Residence.Residence;
+import com.example.assignment.User.Applicant;
 import com.example.assignment.User.User;
 
 import java.text.SimpleDateFormat;
@@ -160,22 +161,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_RESIDENCE);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_UNIT);
     }
-
-    // Adding new User Details
-    public void insertUserDetails(String username, String password, String name, String email, Double monthlyIncome){
-        //Get the Data Repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
-        //Create a new map of values, where column names are the keys
-        ContentValues cValues = new ContentValues();
-        cValues.put(KEY_USERNAME, username);
-        cValues.put(KEY_USERTYPE, 1);
-        cValues.put(KEY_PASSWORD, password);
-        cValues.put(KEY_NAME, name);
-        cValues.put(KEY_EMAIL, email);
-        cValues.put(KEY_MONTHLY_INCOME, monthlyIncome);
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE_USERS,null, cValues);
-    }
 /*
     //checking if there are users in the database
     public User Authenticate(User user){
@@ -314,19 +299,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //public void createUserAdminDetails(String username, String password, String name) {
-        //Get the Data Repository in write mode
-    //    SQLiteDatabase db = this.getWritableDatabase();
-
-        //Create a new map of values, where column names are the keys
-    //    ContentValues cValues = new ContentValues();
-    //    cValues.put(KEY_USERNAME, username);
-     //   cValues.put(KEY_PASSWORD, password);
-    //    cValues.put(KEY_NAME, name);
-        // Insert the new row, returning the primary key value of the new row
-    //    long newRowId = db.insert(TABLE_USERS,null, cValues);
-    //}
-
     // Adding new User Details
     public void AddAdminUser(UserAdmin admin) {
 
@@ -337,6 +309,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_USERTYPE, 0);
         contentValues.put(KEY_PASSWORD, admin.getPassword());
         contentValues.put(KEY_NAME, admin.getName());
+
+        long newRowId = db.insert(TABLE_USERS, null, contentValues);
+        db.close();
+    }
+
+    // Adding new User Details
+    public void AddApplicantUser(Applicant applicant) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_USERNAME, applicant.getUsername());
+        contentValues.put(KEY_USERTYPE, 1);
+        contentValues.put(KEY_PASSWORD, applicant.getPassword());
+        contentValues.put(KEY_NAME, applicant.getName());
+        contentValues.put(KEY_EMAIL, applicant.getEmail());
+        contentValues.put(KEY_MONTHLY_INCOME, applicant.getMonthlyIncome());
 
         long newRowId = db.insert(TABLE_USERS, null, contentValues);
         db.close();
