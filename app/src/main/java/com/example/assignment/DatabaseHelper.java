@@ -201,22 +201,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Signing in
-    public User loginUser(String username, String password){
+    public User loginUser(User user){
 
         SQLiteDatabase db = this.getReadableDatabase();
-        User user = null;
 
         Cursor cursor = db.query(TABLE_USERS, //selecting the users table
                 new String[] {KEY_USERNAME, KEY_PASSWORD},
-                KEY_USERNAME + "=? and " + KEY_PASSWORD + "=?",
-                new String[]{user.getUsername(), user.getPassword()},//Where clause
+                KEY_USERNAME + "=?",
+                new String[]{user.getUsername()},//Where clause
                 null,null,null);
-        if (cursor !=null)
-            cursor.moveToFirst();
-        if (cursor != null && cursor.getCount() > 0){
-            user = new User(cursor.getString(1),cursor.getString(2));
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() >0 ){
+            //if cursor has value then in user database there is user associated with this given username
+            User user1 = new User(cursor.getString(0),cursor.getString(1));
+
+            //Match both passwords check they are same or not
+            if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
+                return user1;
+            }
         }
-        return user;
+        //if user password does not matches or there is no record with that username then return
+        return null;
     }
 
     // Adding new Residence Details
@@ -309,7 +314,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Adding new User Details
-    public void createUserAdminDetails(String username, String password, String name, String email, Double monthlyIncome) {
+    public void createUserAdminDetails(String username, String password, String name) {
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
 

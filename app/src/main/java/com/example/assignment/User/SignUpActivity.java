@@ -38,9 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
             username = usernameEditText.getText().toString().trim();
             password = passwordEditText.getText().toString().trim();
             name = nameEditText.getText().toString().trim();
-            email = "";
-            monthlyIncome = 0.0;
-            databaseHelper.createUserAdminDetails(username, password, name, email, monthlyIncome);
+            databaseHelper.createUserAdminDetails(username, password, name);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
         } else if (applicantBtn.isChecked()) {
