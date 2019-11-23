@@ -28,20 +28,32 @@ public class SignUpActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     public void addUser(View view){
-        String username = usernameEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String name = nameEditText.getText().toString().trim();
-        String email = emailEditText.getText().toString().trim();
-        Double monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
+        String username;
+        String password;
+        String name;
+        String email;
+        Double monthlyIncome;
 
-        if (email.equalsIgnoreCase("") && monthlyIncome.isNaN()) {
-            databaseHelper.createUserAdminDetails(username,password,name);
+        if (adminBtn.isChecked()) {
+            username = usernameEditText.getText().toString().trim();
+            password = passwordEditText.getText().toString().trim();
+            name = nameEditText.getText().toString().trim();
+            email = "";
+            monthlyIncome = 0.0;
+            databaseHelper.createUserAdminDetails(username, password, name, email, monthlyIncome);
             Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
             finish();
-        } else {
+        } else if (applicantBtn.isChecked()) {
+            username = usernameEditText.getText().toString().trim();
+            password = passwordEditText.getText().toString().trim();
+            name = nameEditText.getText().toString().trim();
+            email = emailEditText.getText().toString().trim();
+            monthlyIncome = Double.parseDouble(monthlyIncomeEditText.getText().toString());
             databaseHelper.insertUserDetails(username,password,name,email,monthlyIncome);
             Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
             finish();
+        } else {
+            Toast.makeText(this, "Application failed, please select an account type", Toast.LENGTH_LONG).show();
         }
     }
     //public void registerUser(View view){

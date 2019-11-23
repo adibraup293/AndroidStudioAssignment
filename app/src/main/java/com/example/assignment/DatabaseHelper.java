@@ -289,7 +289,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Adding new User Details
-    public void createUserAdminDetails(String username, String password, String name){
+    public void createUserAdminDetails(String username, String password, String name, String email, Double monthlyIncome) {
         //Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -298,6 +298,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cValues.put(KEY_USERNAME, username);
         cValues.put(KEY_PASSWORD, password);
         cValues.put(KEY_NAME, name);
+        cValues.put(KEY_EMAIL, email);
+        cValues.put(KEY_MONTHLY_INCOME, monthlyIncome);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(TABLE_USERS,null, cValues);
     }
