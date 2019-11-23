@@ -32,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password;
         String name;
         String email;
-        Double monthlyIncome;
+        Double monthlyIncome; 
 
         if (adminBtn.isChecked()) {
             username = usernameEditText.getText().toString().trim();
