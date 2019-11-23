@@ -168,7 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
         cValues.put(KEY_USERNAME, username);
-        cValues.put(KEY_USERTYPE, "0");
+        cValues.put(KEY_USERTYPE, 1);
         cValues.put(KEY_PASSWORD, password);
         cValues.put(KEY_NAME, name);
         cValues.put(KEY_EMAIL, email);
@@ -334,7 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, admin.getUsername());
-        contentValues.put(KEY_USERTYPE, "1");
+        contentValues.put(KEY_USERTYPE, 0);
         contentValues.put(KEY_PASSWORD, admin.getPassword());
         contentValues.put(KEY_NAME, admin.getName());
 

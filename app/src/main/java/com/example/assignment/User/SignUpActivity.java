@@ -30,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void addUser(View view){
         String username;
+        int usertype;
         String password;
         String name;
         String email;
@@ -39,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
             UserAdmin userAdmin = new UserAdmin();
 
             userAdmin.setUsername(usernameEditText.getText().toString().trim());
+            userAdmin.setUsertype(0);
             userAdmin.setPassword(passwordEditText.getText().toString().trim());
             userAdmin.setName(nameEditText.getText().toString().trim());
 
