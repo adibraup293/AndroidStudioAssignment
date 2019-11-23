@@ -331,7 +331,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public User Authenticate(User user) {
+/*    public User Authenticate(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS,// Selecting Table
                 new String[]{KEY_USERNAME, KEY_PASSWORD},//Selecting columns want to query
@@ -351,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         //if user password does not matches or there is no record with that email then return @false
         return null;
-    }
+    }*/
 
     private static Date date = new Date();
     private static final SimpleDateFormat formatter = new SimpleDateFormat(
