@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.Application.Applications;
 import com.example.assignment.Residence.Residence;
-import com.example.assignment.User.Applicant;
 import com.example.assignment.User.User;
 
 import java.text.SimpleDateFormat;
@@ -169,6 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Create a new map of values, where column names are the keys
         ContentValues cValues = new ContentValues();
         cValues.put(KEY_USERNAME, username);
+        cValues.put(KEY_USERTYPE, "0");
         cValues.put(KEY_PASSWORD, password);
         cValues.put(KEY_NAME, name);
         cValues.put(KEY_EMAIL, email);
@@ -176,7 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(TABLE_USERS,null, cValues);
     }
-
+/*
     //checking if there are users in the database
     public User Authenticate(User user){
         SQLiteDatabase db =this.getWritableDatabase();
@@ -198,7 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //if user password does not matches or there is no record with that username then return
         return null;
 
-    }
+    }*/
 
     //Signing in
     public User loginUser(User user){
@@ -334,6 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, admin.getUsername());
+        contentValues.put(KEY_USERTYPE, "1");
         contentValues.put(KEY_PASSWORD, admin.getPassword());
         contentValues.put(KEY_NAME, admin.getName());
 
@@ -341,17 +342,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    //checking if there are user admin in the database
-    public UserAdmin AuthenticateAdmin(UserAdmin userAdmin){
-        SQLiteDatabase db =this.getWritableDatabase();
-        Cursor cursor = db.query(TABLE_USERS, //selecting the users table
-                new String[] {KEY_USERNAME, KEY_PASSWORD},
+    public User Authenticate(User user) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS,// Selecting Table
+                new String[]{KEY_USERNAME, KEY_PASSWORD},//Selecting columns want to query
                 KEY_USERNAME + "=?",
-                new String[]{userAdmin.getUsername()},//Where clause
-                null,null,null);
-        //if user password does not matches or there is no record with that username then return
-        return null;
+                new String[]{user.getUsername()},//Where clause
+                null, null, null);
 
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            //if cursor has value then in user database there is user associated with this given username
+            User user1 = new User(cursor.getString(0), cursor.getString(1),
+                    cursor.getString(2));
+
+            //Match both passwords check they are same or not
+            if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
+                return user1;
+            }
+        }
+        //if user password does not matches or there is no record with that email then return @false
+        return null;
     }
 
     private static Date date = new Date();

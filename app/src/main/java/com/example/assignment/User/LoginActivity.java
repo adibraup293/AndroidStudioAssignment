@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.assignment.Admin.AdminHomeActivity;
-import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+
     public void LoginButton(View view){
 
         String username = usernameEditText.getText().toString();
@@ -33,21 +33,19 @@ public class LoginActivity extends AppCompatActivity {
         User currentUser = databaseHelper.loginUser( new User(username,password));
 
         //check if authentication is successful or not
-        if (currentUser instanceof Applicant){
+        if (currentUser.getUsertype() == 1) {
             Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
             //User Logged in successfully
 
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
             userHomeIntent.putExtra("username", username);
             startActivity(userHomeIntent);
-        }
-
-        else if (currentUser instanceof UserAdmin){
+        } else if (currentUser.getUsertype() == 0) {
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 
             Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-            adminHomeIntent.putExtra("username", usernameEditText.getText().toString());
+            adminHomeIntent.putExtra("username", username);
             startActivity(adminHomeIntent);
         } else {
             Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();

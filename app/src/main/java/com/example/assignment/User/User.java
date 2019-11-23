@@ -3,6 +3,7 @@ package com.example.assignment.User;
 public class User {
     private String name;
     private String username;
+    private int usertype;
     private String password;
 
     public User() {
@@ -50,5 +51,13 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public int getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(int usertype) {
+        this.usertype = usertype;
     }
 }
