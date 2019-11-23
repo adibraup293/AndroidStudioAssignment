@@ -27,27 +27,27 @@ public class LoginActivity extends AppCompatActivity {
 
     public void LoginButton(View view){
 
-        //Get values from edittext
-        String username = usernameEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-
         //authenticate User
-        User currentUser = databaseHelper.Authenticate(new User(username,password));
+        //User currentUser = databaseHelper.Authenticate(new User(username,password));
+        User currentUser = databaseHelper.loginUser(usernameEditText.getText().toString(),
+                passwordEditText.getText().toString());
 
         //check if authentication is successful or not
-        if (currentUser instanceof Applicant){
+        if (currentUser != null && currentUser instanceof Applicant){
             Toast.makeText(this, "Logging in as " + currentUser.getUsername(), Toast.LENGTH_SHORT).show();
             //User Logged in successfully
 
             Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
-            userHomeIntent.putExtra("username", username);
+            userHomeIntent.putExtra("username", usernameEditText.getText().toString());
             startActivity(userHomeIntent);
-        } else if (currentUser instanceof UserAdmin){
+        }
+
+        else if (currentUser != null && currentUser instanceof UserAdmin){
             Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 
             Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-            adminHomeIntent.putExtra("username", username);
+            adminHomeIntent.putExtra("username", usernameEditText.getText().toString());
             startActivity(adminHomeIntent);
         } else {
             Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();

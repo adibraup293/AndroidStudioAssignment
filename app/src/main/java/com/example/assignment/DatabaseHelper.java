@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.Application.Applications;
 import com.example.assignment.Residence.Residence;
+import com.example.assignment.User.Applicant;
 import com.example.assignment.User.User;
 
 import java.text.SimpleDateFormat;
@@ -199,6 +200,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Signing in
+    public User loginUser(String username, String password){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        User user = null;
+
+        Cursor cursor = db.query(TABLE_USERS, //selecting the users table
+                new String[] {KEY_USERNAME, KEY_PASSWORD},
+                KEY_USERNAME + "=? and " + KEY_PASSWORD + "=?",
+                new String[]{user.getUsername(), user.getPassword()},//Where clause
+                null,null,null);
+        if (cursor !=null)
+            cursor.moveToFirst();
+        if (cursor != null && cursor.getCount() > 0){
+            user = new User(cursor.getString(1),cursor.getString(2));
+        }
+        return user;
+    }
+
     // Adding new Residence Details
     public void addResidence(Residence residence){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -298,8 +318,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cValues.put(KEY_USERNAME, username);
         cValues.put(KEY_PASSWORD, password);
         cValues.put(KEY_NAME, name);
-        cValues.put(KEY_EMAIL, email);
-        cValues.put(KEY_MONTHLY_INCOME, monthlyIncome);
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(TABLE_USERS,null, cValues);
     }
