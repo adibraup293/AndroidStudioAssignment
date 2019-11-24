@@ -78,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";//COLUMN name
     private static final String KEY_EMAIL = "email";//COLUMN email
     private static final String KEY_MONTHLY_INCOME = "monthlyIncome";//COLUMN monthly income
+    private static final String KEY_STAFF_ID = "staffID";//COLUMN staffID
 
     //Table creation statements
     // Creating Allocation Table
@@ -135,7 +136,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_PASSWORD + " TEXT,"
             + KEY_NAME + " TEXT,"
             + KEY_EMAIL + " TEXT,"
-            + KEY_MONTHLY_INCOME + " DOUBLE"
+            + KEY_MONTHLY_INCOME + " DOUBLE,"
+            + KEY_STAFF_ID + " INT"
             + " ) ";
 
     public DatabaseHelper(@Nullable Context context) {
@@ -306,9 +308,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, admin.getUsername());
-        contentValues.put(KEY_USERTYPE, 0);
+        contentValues.put(KEY_USERTYPE, admin.getUsertype());
         contentValues.put(KEY_PASSWORD, admin.getPassword());
         contentValues.put(KEY_NAME, admin.getName());
+        contentValues.put(KEY_STAFF_ID, admin.getStaffID());
 
         long newRowId = db.insert(TABLE_USERS, null, contentValues);
         db.close();
@@ -321,7 +324,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, applicant.getUsername());
-        contentValues.put(KEY_USERTYPE, 1);
+        contentValues.put(KEY_USERTYPE, applicant.getUsertype());
         contentValues.put(KEY_PASSWORD, applicant.getPassword());
         contentValues.put(KEY_NAME, applicant.getName());
         contentValues.put(KEY_EMAIL, applicant.getEmail());

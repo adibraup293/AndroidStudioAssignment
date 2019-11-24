@@ -35,19 +35,19 @@ public class LoginActivity extends AppCompatActivity {
         //check if authentication is successful or not
         if (currentUser.getUsertype() == 0) {
             Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
-            //User Logged in successfully
-
-            Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
-            userHomeIntent.putExtra("username", username);
-            startActivity(userHomeIntent);
-
-        } else if (currentUser.getUsertype() == 1) {
-            Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
             //Officer Logged in successfully
 
             Intent adminHomeIntent = new Intent(LoginActivity.this, AdminHomeActivity.class);
             adminHomeIntent.putExtra("username", username);
             startActivity(adminHomeIntent);
+
+        } else if (currentUser.getUsertype() == 1) {
+            Toast.makeText(this, "Logging in as " + username, Toast.LENGTH_SHORT).show();
+            //User Logged in successfully
+
+            Intent userHomeIntent = new Intent(LoginActivity.this, UserHomeActivity.class);
+            userHomeIntent.putExtra("username", username);
+            startActivity(userHomeIntent);
 
         } else {
             Toast.makeText(this, "No user found. Please create an account!", Toast.LENGTH_LONG).show();
