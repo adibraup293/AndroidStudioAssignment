@@ -364,7 +364,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_STATUS, applications.getStatus());
         db.insert(TABLE_APPLICATIONS, null, contentValues);
         db.close();
-
     }
+
+    public List<Applications> getApplicationsForUser() {
+        List<Applications> applicationsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String getAll = "SELECT * FROM " + TABLE_APPLICATIONS + " WHERE username LIKE '" + +"'";
+    }
+
+    /*
+    public List<Residence> GetAllResidences(){
+
+        List<Residence> residenceList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + TABLE_RESIDENCE;
+
+        Cursor cursor = db.rawQuery(selectAll,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Residence residence = new Residence();
+                residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnits(cursor.getInt(2));
+                residence.setSizePerUnit(cursor.getInt(3));
+                residence.setMonthlyRental(cursor.getDouble(4));
+
+                residenceList.add(residence);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  residenceList;
+    }*/
 
 }

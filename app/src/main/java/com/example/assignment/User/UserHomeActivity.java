@@ -7,11 +7,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.assignment.Application.ViewApplicationsUserActivity;
 import com.example.assignment.MainActivity;
 import com.example.assignment.R;
 import com.example.assignment.Residence.ViewResidenceApplicantActivity;
 
 public class UserHomeActivity extends AppCompatActivity {
+
+    String adminUsername;
 
     public void back(View view) {
         finish();
@@ -19,9 +22,15 @@ public class UserHomeActivity extends AppCompatActivity {
         startActivity(mainActivity);
     }
 
-    public void openViewResidenceAplicant(View view){
+    public void openViewResidenceApplicant(View view) {
         Intent viewResidenceApplicant = new Intent(UserHomeActivity.this, ViewResidenceApplicantActivity.class);
+        viewResidenceApplicant.putExtra("username", adminUsername);
         startActivity(viewResidenceApplicant);
+    }
+
+    public void openViewApplicationsApplicant(View view) {
+        Intent viewApplicationsApplicant = new Intent(UserHomeActivity.this, ViewApplicationsUserActivity.class);
+        startActivity(viewApplicationsApplicant);
     }
 
     @Override
@@ -29,7 +38,7 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
-        String adminUsername = getIntent().getStringExtra("username");
+        adminUsername = getIntent().getStringExtra("username");
         TextView adminText = findViewById(R.id.applicantTextView);
         String welcomeMsg = "Welcome back " + adminUsername;
         adminText.setText(welcomeMsg);
