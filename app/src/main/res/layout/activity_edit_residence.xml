@@ -77,14 +77,14 @@
         android:id="@+id/editResidenceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/gothammedium"
         android:text="Edit Residence"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,7 +92,7 @@
         android:id="@+id/residenceEditAddressEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/address_icon"
         android:ems="10"
@@ -100,9 +100,25 @@
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editResidenceTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/editResidenceNameEditText" />
+
+    <EditText
+        android:id="@+id/editResidenceNameEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/address_icon"
+        android:ems="10"
+        android:hint="Enter residence name"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editResidenceTextView" />
 
     <Button
         android:id="@+id/backBtn"

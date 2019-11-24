@@ -13,6 +13,7 @@ import com.example.assignment.R;
 public class EditResidenceActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
+    EditText editResidenceName;
     EditText editAddress;
     EditText editSizePerUnit;
     EditText editNumOfUnit;
@@ -21,6 +22,7 @@ public class EditResidenceActivity extends AppCompatActivity {
 
     public void UpdateResidenceButton(View view){
 
+        residence.setResidenceName(editResidenceName.getText().toString().trim());
         residence.setAddress(editAddress.getText().toString().trim());
         residence.setNumOfUnits(Integer.parseInt(editNumOfUnit.getText().toString()));
         residence.setSizePerUnit(Integer.parseInt(editSizePerUnit.getText().toString()));
@@ -37,20 +39,22 @@ public class EditResidenceActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(EditResidenceActivity.this);
 
+        editResidenceName = findViewById(R.id.editResidenceNameEditText);
         editAddress = findViewById(R.id.residenceAddressEditText);
         editNumOfUnit = findViewById(R.id.numUnitEditText);
         editSizePerUnit = findViewById(R.id.sizePerUnitEditText);
         editMonthlyRental = findViewById(R.id.monthlyRentalEditText);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", -1);
+        int id = intent.getIntExtra("residenceID", -1);
 
         if (id != -1){
             residence = databaseHelper.getResidence(id);
-                    editAddress.setText(residence.getAddress());
-                    editNumOfUnit.setText(residence.getNumOfUnits());
-                    editSizePerUnit.setText(residence.getSizePerUnit());
-                    editMonthlyRental.setText("");
+            editResidenceName.setText("");
+            editAddress.setText("");
+            editNumOfUnit.setText("");
+            editSizePerUnit.setText("");
+            editMonthlyRental.setText("");
         }
     }
 }

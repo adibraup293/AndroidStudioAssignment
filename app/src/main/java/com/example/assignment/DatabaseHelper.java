@@ -1,5 +1,6 @@
 package com.example.assignment;
 
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -221,6 +222,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /*
+    public Contact GetContact(int id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Util.TABLE_NAME,
+                new String[]{Util.KEY_ID,
+                        Util.KEY_NAME,
+                        Util.KEY_PHONE_NUMBER},
+                Util.KEY_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Contact contact = new Contact();
+        contact.setId(Integer.parseInt(cursor.getString(0)));
+        contact.setName(cursor.getString(1));
+        contact.setPhoneNumber(cursor.getString(2));
+        db.close();
+        return contact;
+    }
+    */
+
     public Residence getResidence(int id){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -247,6 +274,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         residence.setMonthlyRental(Double.parseDouble(cursor.getString(5)));
         db.close();
         return residence;
+    }
+
+    public ArrayList<Applications> getAllApplicationByResID(int id){
+        ArrayList<Applications> applicationsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + TABLE_APPLICATIONS + " WHERE " + KEY_RESIDENCE_ID +
+                " =? ";
+
+        Cursor cursor = db.rawQuery(selectAll, new String[]{Integer.toString(id)});
+        if (cursor.moveToFirst()){
+            do {
+                Applications applications = new Applications();
+                applications.setApplicationID(Integer.parseInt(cursor.getString(0)));
+                applications.setStatus(cursor.getString(1));
+                applications.setRequiredMonth(cursor.getString(2));
+                applications.setApplicationDate(cursor.getString(3));
+
+                applicationsList.add(applications);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  applicationsList;
+
     }
 
     public List<Residence> GetAllResidences(){
