@@ -78,7 +78,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";//COLUMN name
     private static final String KEY_EMAIL = "email";//COLUMN email
     private static final String KEY_MONTHLY_INCOME = "monthlyIncome";//COLUMN monthly income
-    private static final String KEY_STAFF_ID = "staffID";//COLUMN staffID
 
     //Table creation statements
     // Creating Allocation Table
@@ -136,8 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_PASSWORD + " TEXT,"
             + KEY_NAME + " TEXT,"
             + KEY_EMAIL + " TEXT,"
-            + KEY_MONTHLY_INCOME + " DOUBLE,"
-            + KEY_STAFF_ID + " INT"
+            + KEY_MONTHLY_INCOME + " DOUBLE"
             + " ) ";
 
     public DatabaseHelper(@Nullable Context context) {
@@ -172,11 +170,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_USERNAME + "=?",
                 new String[]{user.getUsername()},//Where clause
                 null,null,null);
-
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() >0 ){
             //if cursor has value then in user database there is user associated with this given username
             User user1 = new User(cursor.getString(0),cursor.getString(1));
-
             //Match both passwords check they are same or not
             if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
                 return user1;
@@ -184,7 +180,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         //if user password does not matches or there is no record with that username then return
         return null;
-
     }*/
 
     //Signing in
@@ -216,6 +211,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_RESIDENCE_ADDRESS, residence.getAddress());
+        contentValues.put(KEY_RESIDENCE_NAME, residence.getResidenceName());
         contentValues.put(KEY_NUM_UNITS, residence.getNumOfUnits());
         contentValues.put(KEY_SIZE_PER_UNIT, residence.getSizePerUnit());
         contentValues.put(KEY_MONTHLY_RENTAL, residence.getMonthlyRental());
@@ -308,10 +304,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, admin.getUsername());
-        contentValues.put(KEY_USERTYPE, admin.getUsertype());
+        contentValues.put(KEY_USERTYPE, 0);
         contentValues.put(KEY_PASSWORD, admin.getPassword());
         contentValues.put(KEY_NAME, admin.getName());
-        contentValues.put(KEY_STAFF_ID, admin.getStaffID());
 
         long newRowId = db.insert(TABLE_USERS, null, contentValues);
         db.close();
@@ -324,7 +319,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_USERNAME, applicant.getUsername());
-        contentValues.put(KEY_USERTYPE, applicant.getUsertype());
+        contentValues.put(KEY_USERTYPE, 1);
         contentValues.put(KEY_PASSWORD, applicant.getPassword());
         contentValues.put(KEY_NAME, applicant.getName());
         contentValues.put(KEY_EMAIL, applicant.getEmail());
@@ -341,12 +336,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_USERNAME + "=?",
                 new String[]{user.getUsername()},//Where clause
                 null, null, null);
-
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             //if cursor has value then in user database there is user associated with this given username
             User user1 = new User(cursor.getString(0), cursor.getString(1),
                     cursor.getString(2));
-
             //Match both passwords check they are same or not
             if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
                 return user1;

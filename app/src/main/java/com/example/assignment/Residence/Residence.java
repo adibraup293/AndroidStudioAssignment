@@ -2,6 +2,7 @@ package com.example.assignment.Residence;
 
 public class Residence {
     private int residenceID;
+    private String residenceName;
     private String address;
     private int numOfUnits;
     private int sizePerUnit;
@@ -10,8 +11,9 @@ public class Residence {
     public Residence() {
     }
 
-    public Residence(int residenceID, String address, int numOfUnits, int sizePerUnit, double monthlyRental) {
+    public Residence(int residenceID, String residenceName, String address, int numOfUnits, int sizePerUnit, double monthlyRental) {
         this.residenceID = residenceID;
+        this.residenceName = residenceName;
         this.address = address;
         this.numOfUnits = numOfUnits;
         this.sizePerUnit = sizePerUnit;
@@ -24,6 +26,14 @@ public class Residence {
 
     public void setResidenceID(int residenceID) {
         this.residenceID = residenceID;
+    }
+
+    public String getResidenceName() {
+        return residenceName;
+    }
+
+    public void setResidenceName(String residenceName) {
+        this.residenceName = residenceName;
     }
 
     public String getAddress() {
@@ -60,12 +70,13 @@ public class Residence {
 
     @Override
     public String toString() {
-        return "Residence{" +
-                "residenceID=" + residenceID +
-                ", address='" + address + '\'' +
-                ", numOfUnits=" + numOfUnits +
+        return "Residence available: " +
+                "residenceID = " + residenceID +
+                " residence name = " + residenceName +
+                ", address = '" + address + '\'' +
+                ", with numOfUnits = " + numOfUnits +
                 ", sizePerUnit in sq ft.= " + sizePerUnit +
-                ", monthlyRental=" + monthlyRental +
+                ", monthlyRental of RM" + monthlyRental +
                 '}';
     }
 }
