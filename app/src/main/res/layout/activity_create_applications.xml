@@ -8,27 +8,52 @@
     android:padding="8dp"
     tools:context=".Application.CreateApplicationsActivity">
 
+    <ListView
+        android:id="@+id/unitsList"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/darkred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applyAppTextView" />
+
     <Spinner
         android:id="@+id/monthEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/date_icon"
         android:ems="10"
         android:hint="Enter required month"
         android:inputType="textShortMessage"
-        android:textAlignment="center"
         android:spinnerMode="dropdown"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/applyAppTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/durationEditText" />
+
+    <Button
+        android:id="@+id/applyApplication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_button"
+        android:onClick="createApplicationsButton"
+        android:text="Apply"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearEditText" />
 
     <EditText
         android:id="@+id/yearEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/date_icon"
         android:ems="10"
@@ -36,32 +61,35 @@
         android:inputType="number"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/monthEditText" />
 
-    <Button
-        android:id="@+id/applyApplication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/bg_button"
-        android:onClick="createApplicationsButton"
-        android:text="Apply"
-        android:textColor="#FFFFFF"
+    <EditText
+        android:id="@+id/durationEditText"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_edit_text"
+        android:drawableLeft="@drawable/date_icon"
+        android:ems="10"
+        android:hint="Enter duration you wish to rent the room"
+        android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yearEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/unitsList" />
 
     <TextView
         android:id="@+id/applyAppTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/gothammedium"
-        android:text="Apply Applications"
+        android:text="Select a unit and apply"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

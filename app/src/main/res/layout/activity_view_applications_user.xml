@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/user_background"
     android:padding="8dp"
-    tools:context=".Residence.ViewResidenceApplicantActivity">
+    tools:context=".Application.ViewApplicationsUserActivity">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/gothammedium"
-        android:text="Select a residence"
+        android:text="List of applications made by you"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="40dp"
@@ -23,37 +23,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/residenceListView"
+        android:id="@+id/applicationsList"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="40dp"
+        android:background="@color/darkred"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-    <Button
-        android:id="@+id/applyingBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:background="@drawable/bg_button"
-        android:onClick="ApplyingButton"
-        android:text="apply for this residence"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/residenceListView" />
 
     <Button
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/bg_button"
         android:onClick="back"
         android:text="Back"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/applyingBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteBtn" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_button"
+        android:text="Delete"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applicationsList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
