@@ -8,11 +8,37 @@
     android:padding="8dp"
     tools:context=".User.LoginActivity">
 
+    <RadioGroup
+        android:id="@+id/radioGroupLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_button"
+        android:orientation='horizontal'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginTextView">
+
+        <RadioButton
+            android:id="@+id/userBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Applicant"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/adminBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Housing Officer"
+            android:textColor="#FFFFFF" />
+    </RadioGroup>
+
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/username_icon"
         android:ems="10"
@@ -22,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupLogin" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -41,12 +67,27 @@
 
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/applicantLoginBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:background="@drawable/bg_button"
-        android:onClick="LoginButton"
+        android:onClick="LoginButtonApplicant"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+    <Button
+        android:id="@+id/adminLoginBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_button"
+        android:onClick="LoginButtonAdmin"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -66,19 +107,20 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/applicantLoginBtn" />
 
     <TextView
         android:id="@+id/loginTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/gothammedium"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
