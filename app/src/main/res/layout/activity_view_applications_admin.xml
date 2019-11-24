@@ -24,7 +24,7 @@
     <ListView
         android:id="@+id/applicationsListView"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="350dp"
         android:layout_marginTop="30dp"
         android:background="@color/Teal"
         app:layout_constraintTop_toBottomOf="@+id/viewApplyTF"
