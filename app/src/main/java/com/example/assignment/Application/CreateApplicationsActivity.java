@@ -35,9 +35,15 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
 
     public void createApplicationsButton(View view){
         Applications applications = new Applications();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDateandTime = sdf.format(new Date());
+
         applications.setApplicationDate(applicationDate.getText().toString().trim());
-        //applications.setRequiredMonth(requiredMonth.);
+        applications.setApplicationDate(currentDateandTime);
+        applications.setRequiredMonth(String.valueOf(requiredMonth.getSelectedItem()));
         applications.setRequiredYear(Integer.parseInt(requiredYear.getText().toString()));
+        applications.setStatus("New");
 
         databaseHelper.addApplications(applications);
 
@@ -100,9 +106,9 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_applications);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDateandTime = sdf.format(new Date());
-        applicationDate.setText(currentDateandTime);
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //String currentDateandTime = sdf.format(new Date());
+        //applicationDate.setText(currentDateandTime);
 
         requiredMonth = findViewById(R.id.monthEditText);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CreateApplicationsActivity.this,

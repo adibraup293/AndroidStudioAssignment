@@ -20,9 +20,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameEditText;
     EditText passwordEditText;
     DatabaseHelper databaseHelper;
+
     Button loginButtonApplicant;
     Button loginButtonAdmin;
-    RadioGroup radioGroup;
+
+    RadioGroup radioGroupLogin;
+
     RadioButton applicantRB;
     RadioButton adminRB;
 
@@ -53,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
             //User Logged in failed.
         }
     }
-
 
     public void LoginButtonApplicant(View view) {
 
@@ -89,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        radioGroup = findViewById(R.id.radioGroupLogin);
+        radioGroupLogin = findViewById(R.id.radioGroupLogin);
         applicantRB = findViewById(R.id.userBtn);
         adminRB = findViewById(R.id.adminBtn);
 
@@ -99,22 +101,24 @@ public class LoginActivity extends AppCompatActivity {
         loginButtonApplicant = findViewById(R.id.applicantLoginBtn);
         loginButtonAdmin = findViewById(R.id.adminLoginBtn);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroupLogin.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
                 applicantRB.isSelected();
-                if (checkedId == R.id.applicantBtn) {
+                if (checkedId == R.id.userBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
                     passwordEditText.setVisibility(View.VISIBLE);
                     loginButtonApplicant.setVisibility(View.VISIBLE);
                     loginButtonAdmin.setVisibility(View.INVISIBLE);
+                    loginButtonAdmin.setEnabled(false);
 
                 } else if (checkedId == R.id.adminBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
                     passwordEditText.setVisibility(View.VISIBLE);
-                    loginButtonApplicant.setVisibility(View.INVISIBLE);
+                    loginButtonApplicant.setEnabled(false);
                     loginButtonAdmin.setVisibility(View.VISIBLE);
+                    loginButtonApplicant.setVisibility(View.INVISIBLE);
                 }
             }
         });

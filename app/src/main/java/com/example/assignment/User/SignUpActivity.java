@@ -109,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
                     monthlyIncomeEditText.setVisibility(View.VISIBLE);
                     signUpBtn1.setVisibility(View.VISIBLE);
                     signUpBtn2.setVisibility(View.INVISIBLE);
+                    signUpBtn2.setEnabled(false);
 
                 } else if (checkedId == R.id.adminBtn) {
                     usernameEditText.setVisibility(View.VISIBLE);
@@ -117,6 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
                     emailEditText.setVisibility(View.INVISIBLE);
                     monthlyIncomeEditText.setVisibility(View.INVISIBLE);
                     signUpBtn1.setVisibility(View.INVISIBLE);
+                    signUpBtn1.setEnabled(false);
                     signUpBtn2.setVisibility(View.VISIBLE);
                 }
             }

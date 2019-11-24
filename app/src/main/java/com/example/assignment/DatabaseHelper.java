@@ -227,6 +227,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_RESIDENCE,
                 new String[]{KEY_RESIDENCE_ID,
+                        KEY_RESIDENCE_NAME,
                         KEY_RESIDENCE_ADDRESS,
                         KEY_NUM_UNITS,
                         KEY_SIZE_PER_UNIT,
@@ -239,10 +240,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Residence residence = new Residence();
         residence.setResidenceID(Integer.parseInt(cursor.getString(0)));
-        residence.setAddress(cursor.getString(1));
-        residence.setNumOfUnits(Integer.parseInt(cursor.getString(2)));
-        residence.setSizePerUnit(Integer.parseInt(cursor.getString(3)));
-        residence.setMonthlyRental(Double.parseDouble(cursor.getString(4)));
+        residence.setResidenceName(cursor.getString(1));
+        residence.setAddress(cursor.getString(2));
+        residence.setNumOfUnits(Integer.parseInt(cursor.getString(3)));
+        residence.setSizePerUnit(Integer.parseInt(cursor.getString(4)));
+        residence.setMonthlyRental(Double.parseDouble(cursor.getString(5)));
         db.close();
         return residence;
     }
@@ -366,11 +368,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /*
     public List<Applications> getApplicationsForUser() {
         List<Applications> applicationsList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String getAll = "SELECT * FROM " + TABLE_APPLICATIONS + " WHERE username LIKE '" + +"'";
-    }
+    }/*
 
     /*
     public List<Residence> GetAllResidences(){

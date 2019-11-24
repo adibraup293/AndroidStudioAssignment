@@ -70,13 +70,12 @@ public class Residence {
 
     @Override
     public String toString() {
-        return "Residence available: " +
-                "residenceID = " + residenceID +
+        return "Residence available : " +
                 " residence name = " + residenceName +
                 ", address = '" + address + '\'' +
                 ", with numOfUnits = " + numOfUnits +
                 ", sizePerUnit in sq ft.= " + sizePerUnit +
-                ", monthlyRental of RM" + monthlyRental +
+                ", monthlyRental of RM" + monthlyRental + "0" +
                 '}';
     }
 }
