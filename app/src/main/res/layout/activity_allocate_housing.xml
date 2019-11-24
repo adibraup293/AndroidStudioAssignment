@@ -28,12 +28,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/gothammedium"
         android:text="Applicant's name: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDisplay" />
 
@@ -48,7 +48,7 @@
         android:text="<show applicant name here>"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namePlacer" />
 
@@ -63,7 +63,7 @@
         android:text="Date of application: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameShow" />
 
@@ -78,7 +78,7 @@
         android:text="<show applicant date here>"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePlacer" />
 
@@ -93,7 +93,7 @@
         android:text="Required month: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateShow" />
 
@@ -108,7 +108,7 @@
         android:text="September"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/monthPlacer"
         app:layout_constraintTop_toBottomOf="@+id/dateShow" />
 
@@ -123,7 +123,7 @@
         android:text="Required year: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/monthPlacer" />
 
@@ -138,7 +138,7 @@
         android:text="2020"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/yearPlacer"
         app:layout_constraintTop_toBottomOf="@+id/monthPlacer" />
 
@@ -153,7 +153,7 @@
         android:text="Status: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yearPlacer" />
 
@@ -168,7 +168,7 @@
         android:text="Accepted"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/statusPlacer"
         app:layout_constraintTop_toBottomOf="@+id/yearPlacer" />
 
@@ -183,7 +183,7 @@
         android:text="Residence name: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statusPlacer" />
 
@@ -198,7 +198,7 @@
         android:text="<show residence name here>"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/residencePlacer" />
 
@@ -213,7 +213,7 @@
         android:text="Unit number: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/residenceShow" />
 
@@ -228,7 +228,7 @@
         android:text="1000000000"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/unitPlacer"
         app:layout_constraintTop_toBottomOf="@+id/residenceShow" />
 
@@ -243,7 +243,7 @@
         android:text="Duration: "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unitPlacer" />
 
@@ -258,7 +258,7 @@
         android:text="18 months"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/durationPlacer"
         app:layout_constraintTop_toBottomOf="@+id/unitPlacer" />
 
@@ -268,9 +268,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/bg_button"
         android:padding="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="Approve"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -281,9 +283,11 @@
         android:id="@+id/waitlistBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/bg_button"
         android:padding="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="Waitlist"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -295,15 +299,33 @@
         android:id="@+id/rejectBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/bg_button"
         android:padding="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="Rejected"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/durationPlacer" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button"
+        android:padding="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Back"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waitlistBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

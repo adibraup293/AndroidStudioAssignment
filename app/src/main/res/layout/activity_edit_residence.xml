@@ -13,9 +13,12 @@
         style="Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/bg_button"
         android:onClick="UpdateResidenceButton"
+        android:padding="8dp"
         android:text="Update Residence"
+        android:textColor="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +28,7 @@
         android:id="@+id/editNumOfUnitsEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/rooms_icon"
         android:ems="10"
@@ -89,7 +92,7 @@
         android:id="@+id/residenceEditAddressEditText"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="72dp"
         android:background="@drawable/rounded_edit_text"
         android:drawableLeft="@drawable/address_icon"
         android:ems="10"
@@ -100,4 +103,18 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editResidenceTextView" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_button"
+        android:padding="16dp"
+        android:text="Back"
+        android:textColor="#FAFAFA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editResidenceButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

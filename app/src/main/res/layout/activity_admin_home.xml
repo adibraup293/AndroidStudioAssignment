@@ -9,13 +9,14 @@
     tools:context=".Admin.AdminHomeActivity">
 
     <Button
-        android:id="@+id/backBtn3"
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:background="@drawable/bg_button"
         android:onClick="back"
-        android:text="Back"
+        android:padding="16dp"
+        android:text="Logout"
         android:textColor="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
