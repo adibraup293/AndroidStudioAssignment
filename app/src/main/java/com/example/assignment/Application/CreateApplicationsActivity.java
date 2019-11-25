@@ -28,22 +28,23 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
             "July", "August", "September", "October", "November", "December"};
     String reqMonth;
     EditText requiredYear;
-    Residence residence;
     private Spinner requiredMonth;
-
 
     DatabaseHelper databaseHelper;
 
     public void createApplicationsButton(View view){
-        Applications applications = new Applications();
+
+        Intent intent = getIntent();
+        int resid = intent.getIntExtra("id", -1);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
 
-        applications.setApplicationDate(currentDateandTime);
-        applications.setRequiredMonth(String.valueOf(requiredMonth.getSelectedItem()));
-        applications.setRequiredYear(Integer.parseInt(requiredYear.getText().toString()));
-        applications.setStatus("New");
+
+        String selectMonth = String.valueOf(requiredMonth.getSelectedItem());
+        int selectYear = Integer.parseInt(requiredYear.getText().toString());
+
+        Applications applications = new Applications(currentDateandTime, selectMonth, selectYear, "New", resid);
 
 
         databaseHelper.addApplications(applications);
@@ -106,22 +107,6 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_applications);
-
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //String currentDateandTime = sdf.format(new Date());
-        //applicationDate.setText(currentDateandTime);
-
-        Intent intent = getIntent();
-        int id = intent.getIntExtra("id", -1);
-
-        //if (id != -1){
-        //    residence = databaseHelper.getResidence(id);
-        //    Residence nResidence = new Residence();
-        //    editAddress.setText(residence.getAddress());
-        //    editNumOfUnit.setText(residence.getNumOfUnits());
-        //    editSizePerUnit.setText(residence.getSizePerUnit());
-        //    editMonthlyRental.setText("");
-        //}
 
         requiredMonth = findViewById(R.id.monthEditText);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CreateApplicationsActivity.this,

@@ -7,13 +7,12 @@ public class Applications {
     private String applicationDate;
     private String requiredMonth;
     private int requiredYear;
-    private String status = "new";
+    private String status;
 
     public Applications() {
     }
 
-    public Applications(int applicationID, String applicationDate, String requiredMonth, int requiredYear, String status) {
-        this.applicationID = applicationID;
+    public Applications(String applicationDate, String requiredMonth, int requiredYear, String status, int resID) {
         this.applicationDate = applicationDate;
         this.requiredMonth = requiredMonth;
         this.requiredYear = requiredYear;

@@ -40,10 +40,10 @@ public class EditResidenceActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(EditResidenceActivity.this);
 
         editResidenceName = findViewById(R.id.editResidenceNameEditText);
-        editAddress = findViewById(R.id.residenceAddressEditText);
-        editNumOfUnit = findViewById(R.id.numUnitEditText);
-        editSizePerUnit = findViewById(R.id.sizePerUnitEditText);
-        editMonthlyRental = findViewById(R.id.monthlyRentalEditText);
+        editAddress = findViewById(R.id.residenceEditAddressEditText);
+        editNumOfUnit = findViewById(R.id.editNumOfUnitsEditText);
+        editSizePerUnit = findViewById(R.id.editSizePerUnitEditText);
+        editMonthlyRental = findViewById(R.id.editMonthlyRentalEditText);
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("residenceID", -1);
@@ -51,10 +51,10 @@ public class EditResidenceActivity extends AppCompatActivity {
         if (id != -1){
             residence = databaseHelper.getResidence(id);
             editResidenceName.setText("");
-            //editAddress.setText("");
-            //editNumOfUnit.setText("");
-            //editSizePerUnit.setText("");
-            //editMonthlyRental.setText("");
+            editAddress.setText(residence.getAddress());
+            editNumOfUnit.setText("");
+            editSizePerUnit.setText("");
+            editMonthlyRental.setText("");
         }
     }
 }

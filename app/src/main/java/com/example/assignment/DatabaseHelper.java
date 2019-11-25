@@ -110,10 +110,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_TABLE_APPLICATIONS = " CREATE TABLE " + TABLE_APPLICATIONS //SQL for creating application table
             + " ( "
             + KEY_APPLICATION_ID + " INTEGER PRIMARY KEY, "
-            + KEY_APPLICATION_DATE + " DATE,"
+            + KEY_APPLICATION_DATE + " TEXT,"
             + KEY_REQUIRED_MONTH + " TEXT,"
             + KEY_REQUIRED_YEAR + " TEXT,"
-            + KEY_STATUS + " TEXT,"
+            + KEY_STATUS + " TEXT DEFAULT \"New\","
             + KEY_APPLY_UNAME + " TEXT,"
             + KEY_FK_RESIDENCE_ID + " INTEGER,"
             + KEY_FK_UNIT_NO + " INTEGER,"
@@ -239,46 +239,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*
-    public Contact GetContact(int id){
+        public Residence GetResidence(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Util.TABLE_NAME, new String[]
+                        {Util.KEY_RESIDENCE_ID, Util.KEY_ADDRESS, Util.KEY_NUMOFUNITS,
+                                KEY_SIZEPERUNIT, Util.KEY_MONTHLYRENTAL},
+                KEY_RESIDENCE_ID+ "=?", new String[]{String.valueOf(id)},
+                null,null,null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        Residence residence = new Residence();
+        residence.setResidenceid((Integer.parseInt(cursor.getString(0))));
+        residence.setAddress(cursor.getString(1));
+        residence.setNumOfUnit(cursor.getString(2));
+        residence.setSizePerUnit(cursor.getString(3));
+        residence.setMonthlyRental(cursor.getString(4));
+
+        return residence;
+    }
+     */
+
+    /*
+        + KEY_APPLICATION_ID + " INTEGER PRIMARY KEY, "
+            + KEY_APPLICATION_DATE + " DATE,"
+            + KEY_REQUIRED_MONTH + " TEXT,"
+            + KEY_REQUIRED_YEAR + " TEXT,"
+            + KEY_STATUS + " TEXT DEFAULT \"New\","
+            + KEY_APPLY_UNAME + " TEXT,"
+            + KEY_FK_RESIDENCE_ID + " INTEGER,"
+            + KEY_FK_UNIT_NO + " INTEGER,"
+            + KEY_FK_ADURATION + "TEXT"
+     */
+
+    public Applications getApplicantsApplication(int id){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(Util.TABLE_NAME,
-                new String[]{Util.KEY_ID,
-                        Util.KEY_NAME,
-                        Util.KEY_PHONE_NUMBER},
-                Util.KEY_ID + "=?",
+        Cursor cursor = db.query(TABLE_APPLICATIONS,
+                new String[]{KEY_APPLICATION_ID,
+                    KEY_APPLICATION_DATE,
+                    KEY_REQUIRED_MONTH,
+                        KEY_REQUIRED_YEAR,
+                        KEY_STATUS,
+                        KEY_APPLY_UNAME},
+                KEY_APPLICATION_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null, null, null);
+                null,null,null);
 
         if (cursor != null){
-            cursor.moveToFirst();
-        }
+            cursor.moveToFirst(); }
 
-        Contact contact = new Contact();
-        contact.setId(Integer.parseInt(cursor.getString(0)));
-        contact.setName(cursor.getString(1));
-        contact.setPhoneNumber(cursor.getString(2));
-        db.close();
-        return contact;
+        Applications applications = new Applications();
+        applications.setApplicationID(Integer.parseInt(cursor.getString(0)));
+        applications.setApplicationDate(cursor.getString(1));
+        applications.setRequiredMonth(cursor.getString(2));
+        applications.setStatus(cursor.getString(3));
+
+        db.close();;
+        return applications;
     }
-    */
+
 
     public Residence getResidence(int id){
-
-        /*
-        // Creating Residence Table
-            private static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating residence table
-            + " ( "
-            + KEY_RESIDENCE_ID + " INTEGER PRIMARY KEY,"
-            + KEY_RESIDENCE_NAME + " TEXT,"
-            + KEY_RESIDENCE_ADDRESS + " TEXT,"
-            + KEY_NUM_UNITS + " TEXT,"
-            + KEY_SIZE_PER_UNIT + " TEXT,"
-            + KEY_MONTHLY_RENTAL + " TEXT,"
-            + KEY_FK_USERNAME + " TEXT"
-            + " ) ";
-         */
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -330,6 +353,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void WithdrawApplication(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteAll = "DELETE FROM " + TABLE_APPLICATIONS;
+
+        db.execSQL(deleteAll);
+        db.close();
+    }
+
+    public List<Applications> GetAllApplications(){
+        List<Applications> applicationList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectAll = " SELECT * FROM " + TABLE_APPLICATIONS;
+        Cursor cursor = db.rawQuery(selectAll, null);
+        if(cursor.moveToFirst() == true){
+
+            do{
+                Applications applications = new Applications();
+                applications.setApplicationID((Integer.parseInt(cursor.getString(0))));
+                applications.setApplicationDate((cursor.getString(1)));
+                applications.setRequiredMonth((cursor.getString(2)));
+                applications.setRequiredYear((Integer.parseInt(cursor.getString(3))));
+                applications.setStatus((cursor.getString(4)));
+
+                applicationList.add(applications);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return applicationList;
+    }
+
     public List<Residence> GetAllResidences(){
 
         List<Residence> residenceList = new ArrayList<>();
@@ -363,6 +418,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(residence.getResidenceID())});
         db.close();
     }
+
 
     public int UpdateResidence(Residence residence){
 
@@ -441,7 +497,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addApplications(Applications applications){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_APPLICATION_DATE, formatter.format(applications.getApplicationDate()));
+        contentValues.put(KEY_APPLICATION_DATE, currentDate);
         contentValues.put(KEY_REQUIRED_MONTH, applications.getRequiredMonth());
         contentValues.put(KEY_REQUIRED_YEAR, applications.getRequiredYear());
         contentValues.put(KEY_STATUS, applications.getStatus());
@@ -481,5 +537,142 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return  residenceList;
     }*/
+
+    /*
+        public void AddResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_ADDRESS, residence.getAddress());
+        contentValues.put(KEY_NUMOFUNITS, residence.getNumOfUnit());
+        contentValues.put(KEY_SIZEPERUNIT, residence.getSizePerUnit());
+        contentValues.put(KEY_MONTHLYRENTAL, residence.getMonthlyRental());
+
+
+        db.insert(Util.TABLE_NAME, null, contentValues);
+        db.close();
+    }
+
+    public Residence GetResidence(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Util.TABLE_NAME, new String[]
+                        {Util.KEY_RESIDENCE_ID, Util.KEY_ADDRESS, Util.KEY_NUMOFUNITS,
+                                KEY_SIZEPERUNIT, Util.KEY_MONTHLYRENTAL},
+                KEY_RESIDENCE_ID+ "=?", new String[]{String.valueOf(id)},
+                null,null,null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        Residence residence = new Residence();
+        residence.setResidenceid((Integer.parseInt(cursor.getString(0))));
+        residence.setAddress(cursor.getString(1));
+        residence.setNumOfUnit(cursor.getString(2));
+        residence.setSizePerUnit(cursor.getString(3));
+        residence.setMonthlyRental(cursor.getString(4));
+
+        return residence;
+    }
+    public List<Residence> GetAllResidences(){
+        List<Residence> residenceList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + Util.TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(selectAll, null);
+
+        if (cursor.moveToFirst()){
+            do{
+                Residence residence = new Residence();
+                residence.setResidenceid((Integer.parseInt(cursor.getString(0))));
+                residence.setAddress(cursor.getString(1));
+                residence.setNumOfUnit(cursor.getString(2));
+                residence.setSizePerUnit(cursor.getString(3));
+                residence.setMonthlyRental(cursor.getString(4));
+
+                residenceList.add(residence);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return residenceList;
+    }
+
+    public void DeleteAllResidences(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteAll = "DELETE FROM " + Util.TABLE_NAME;
+
+        db.execSQL(deleteAll);
+        db.close();
+    }
+
+    public void DeleteResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.TABLE_NAME, KEY_RESIDENCE_ID + "=?",
+                new String[]{String.valueOf(residence.getResidenceid())});
+        db.close();
+    }
+
+    public void WithdrawApplication(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteAll = "DELETE FROM " + TABLE_Application;
+
+        db.execSQL(deleteAll);
+        db.close();
+    }
+
+    public int UpdateResidence(Residence residence){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Util.KEY_ADDRESS, residence.getAddress());
+        contentValues.put(Util.KEY_NUMOFUNITS, residence.getNumOfUnit());
+        contentValues.put(KEY_SIZEPERUNIT, residence.getSizePerUnit());
+        contentValues.put(Util.KEY_MONTHLYRENTAL, residence.getMonthlyRental());
+
+        return db.update(Util.TABLE_NAME,contentValues,
+                Util.KEY_RESIDENCE_ID+"=?",
+                new String[]{String.valueOf(residence.getResidenceid())});
+    }
+
+    public void CreateApplication(Application application) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(APPLICATION_DATE, application.date);
+        values.put(APPLICATION_MONTH, application.month);
+        values.put(APPLICATION_YEAR, application.year);
+
+        // Inserting Row
+        db.insert(TABLE_Application, null, values);
+        db.close();
+    }
+
+
+
+    public Application GetApplication(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_Application,
+                new String[]{Util.APPLICATION_ID,
+                        Util.APPLICATION_DATE,  Util.APPLICATION_MONTH,
+                        Util.APPLICATION_YEAR,  Util.APPLICATION_STATUS,  Util.APPLICATION_PAYSLIP},
+                Util.APPLICATION_ID + "=?", new String[]{String.valueOf(id)},
+                null,null,null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Application application = new Application();
+        application.setApplicationid((cursor.getString(0)));
+        application.setDate((cursor.getString(1)));
+        application.setMonth((cursor.getString(2)));
+        application.setYear((cursor.getString(3)));
+        application.setStatus((cursor.getString(4)));
+        db.close();
+        return application;
+
+
+    }
+
+     */
 
 }

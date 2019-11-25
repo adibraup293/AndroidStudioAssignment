@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.assignment.Application.Applications;
+import com.example.assignment.Application.ViewApplicationsAdminActivity;
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
 
@@ -24,6 +26,7 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
     ListView residenceListView;
     DatabaseHelper databaseHelper;
     Residence residence;
+    Applications application;
     AlertDialog.Builder alert;
 
     public void back(View view) {
@@ -45,11 +48,11 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
 
     public void viewApplication(View view){
         if (residence != null) {
-            Intent editIntent = new Intent(this, EditResidenceActivity.class);
-            editIntent.putExtra("residenceID", residence.getResidenceID());
+            Intent editIntent = new Intent(this, ViewApplicationsAdminActivity.class);
+            editIntent.putExtra("applicationID", application.getApplicationID());
             startActivity(editIntent);
         } else {
-            Toast.makeText(this, "Cannot found Residence", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cannot found Application", Toast.LENGTH_SHORT).show();
         }
     }
 
