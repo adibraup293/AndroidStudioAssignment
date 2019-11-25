@@ -29,33 +29,46 @@ public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
+    public boolean validate() {
+        return adminBtn.isSelected() && applicantBtn.isSelected();
+    }
+
     public void addAdmin(View view) {
 
-        UserAdmin userAdmin = new UserAdmin();
+        if (validate() == false) {
+            Toast.makeText(this, "Please select a radio button", Toast.LENGTH_SHORT).show();
+        } else {
+            UserAdmin userAdmin = new UserAdmin();
 
-        userAdmin.setUsername(usernameEditText.getText().toString().trim());
-        userAdmin.setUsertype(0);
-        userAdmin.setPassword(passwordEditText.getText().toString().trim());
-        userAdmin.setName(nameEditText.getText().toString().trim());
+            userAdmin.setUsername(usernameEditText.getText().toString().trim());
+            userAdmin.setUsertype(0);
+            userAdmin.setPassword(passwordEditText.getText().toString().trim());
+            userAdmin.setName(nameEditText.getText().toString().trim());
 
-        databaseHelper.AddAdminUser(userAdmin);
-        Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
-        finish();
+            databaseHelper.AddAdminUser(userAdmin);
+            Toast.makeText(this, "Admin user created successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     public void addApplicant(View view) {
-        Applicant applicant = new Applicant();
 
-        applicant.setUsername(usernameEditText.getText().toString().trim());
-        applicant.setUsertype(1);
-        applicant.setPassword(passwordEditText.getText().toString().trim());
-        applicant.setName(nameEditText.getText().toString().trim());
-        applicant.setEmail(emailEditText.getText().toString().trim());
-        applicant.setMonthlyIncome(Double.parseDouble(monthlyIncomeEditText.getText().toString()));
+        if (validate() == false) {
+            Toast.makeText(this, "Please select a radio button", Toast.LENGTH_SHORT).show();
+        } else {
+            Applicant applicant = new Applicant();
 
-        databaseHelper.AddApplicantUser(applicant);
-        Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
-        finish();
+            applicant.setUsername(usernameEditText.getText().toString().trim());
+            applicant.setUsertype(1);
+            applicant.setPassword(passwordEditText.getText().toString().trim());
+            applicant.setName(nameEditText.getText().toString().trim());
+            applicant.setEmail(emailEditText.getText().toString().trim());
+            applicant.setMonthlyIncome(Double.parseDouble(monthlyIncomeEditText.getText().toString()));
+
+            databaseHelper.AddApplicantUser(applicant);
+            Toast.makeText(this, "Applicant user created successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
     //public void registerUser(View view){
     //    String username =usernameEditText.getText().toString().trim();

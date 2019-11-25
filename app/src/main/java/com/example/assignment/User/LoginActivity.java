@@ -29,6 +29,10 @@ public class LoginActivity extends AppCompatActivity {
     RadioButton applicantRB;
     RadioButton adminRB;
 
+    public boolean validate() {
+        return adminRB.isSelected() && applicantRB.isSelected();
+    }
+
     public void back(View view) {
         finish();
     }
