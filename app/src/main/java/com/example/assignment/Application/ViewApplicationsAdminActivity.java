@@ -36,7 +36,7 @@ public class ViewApplicationsAdminActivity extends AppCompatActivity {
 
         ArrayList<Applications> applicationsArrayList = databaseHelper.getAllApplicationByResID(id);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, applicationsArrayList);
-        applicationsArrayList.setAdapter(adapter);
+        applicationsList.setAdapter(adapter);
         //List<Residence> residenceList = databaseHelper.GetAllResidences();
         //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, residenceList);
         //residenceList.setAdapter(adapter);

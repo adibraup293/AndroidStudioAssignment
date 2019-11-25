@@ -40,11 +40,11 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
 
-        applications.setApplicationDate(applicationDate.getText().toString().trim());
         applications.setApplicationDate(currentDateandTime);
         applications.setRequiredMonth(String.valueOf(requiredMonth.getSelectedItem()));
         applications.setRequiredYear(Integer.parseInt(requiredYear.getText().toString()));
         applications.setStatus("New");
+
 
         databaseHelper.addApplications(applications);
 

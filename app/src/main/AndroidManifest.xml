@@ -9,12 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Application.ViewApplicationsAdminActivity"></activity>
-        <activity android:name=".Allocate.allocateHousing" />
-        <activity android:name=".Application.ViewApplicationsUserActivity" />
-        <activity android:name=".Residence.EditResidenceActivity" />
-        <activity android:name=".Residence.ViewResidenceAdminActivity" />
-        <activity android:name=".Application.CreateApplicationsActivity" />
+        <activity android:name=".Application.ViewApplicationsAdminActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Allocate.allocateHousing"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Application.ViewApplicationsUserActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Residence.EditResidenceActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Residence.ViewResidenceAdminActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Application.CreateApplicationsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Residence.ViewResidenceApplicantActivity"
             android:theme="@style/AppTheme.NoActionBar" />

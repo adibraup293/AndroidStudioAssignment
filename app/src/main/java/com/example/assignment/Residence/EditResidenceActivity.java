@@ -51,10 +51,10 @@ public class EditResidenceActivity extends AppCompatActivity {
         if (id != -1){
             residence = databaseHelper.getResidence(id);
             editResidenceName.setText("");
-            editAddress.setText("");
-            editNumOfUnit.setText("");
-            editSizePerUnit.setText("");
-            editMonthlyRental.setText("");
+            //editAddress.setText("");
+            //editNumOfUnit.setText("");
+            //editSizePerUnit.setText("");
+            //editMonthlyRental.setText("");
         }
     }
 }
