@@ -14,6 +14,8 @@
     <string name="error_valid_username_password">Wrong Username or Password</string>
     <string name="error_message_password">Enter Password</string>
     <string name="DROP_TABLE">DROP TABLE IF EXISTS</string>
+
+    <string name="month_prompt">Select a month</string>
     <string-array name="months">
         <item>January</item>
         <item>February</item>

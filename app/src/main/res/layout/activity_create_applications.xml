@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         android:entries="@array/months"
-        android:prompt="Select a month"
+        android:prompt="@string/month_prompt"
         app:layout_constraintTop_toBottomOf="@+id/durationEditText" />
 
     <Button
