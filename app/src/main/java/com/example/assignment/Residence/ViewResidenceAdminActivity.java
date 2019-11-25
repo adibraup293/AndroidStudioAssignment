@@ -43,10 +43,20 @@ public class ViewResidenceAdminActivity extends AppCompatActivity {
         residenceListView.setAdapter(adapter);
     }
 
+    public void viewApplication(View view){
+        if (residence != null) {
+            Intent editIntent = new Intent(this, EditResidenceActivity.class);
+            editIntent.putExtra("residenceID", residence.getResidenceID());
+            startActivity(editIntent);
+        } else {
+            Toast.makeText(this, "Cannot found Residence", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void editButton(View view) {
         if (residence != null) {
             Intent editIntent = new Intent(this, EditResidenceActivity.class);
-            editIntent.putExtra("id", residence.getResidenceID());
+            editIntent.putExtra("residenceID", residence.getResidenceID());
             startActivity(editIntent);
         } else {
             Toast.makeText(this, "Cannot found Residence", Toast.LENGTH_SHORT).show();

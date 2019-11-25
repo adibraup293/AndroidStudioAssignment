@@ -1,5 +1,6 @@
 package com.example.assignment;
 
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -37,42 +38,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_UNIT = "unit";
     private static final String TABLE_USERS = "users";
 
-    // Common column names between tables
+    //Common column names between tables
     //Common between Applications and Allocation table
-    private static final String KEY_APPLICATION_ID = "applicationID";// COLUMN Application ID @primaryKey for Applications table
+    //private static final String KEY_APPLICATION_ID = "applicationID";// COLUMN Application ID @primaryKey for Applications table
     private static final String KEY_DURATION = "duration";//COLUMN duration
 
     //Common between Residence, Unit and Applications table
-    private static final String KEY_RESIDENCE_ID = "residenceID";// COLUMN Residence ID @primaryKey for Residence table
+    //private static final String KEY_RESIDENCE_ID = "residenceID";// COLUMN Residence ID @primaryKey for Residence table
 
     //Common between Unit and Allocation table
-    private static final String KEY_UNIT_ID = "unitID";//COLUMN unitID @primaryKey for Unit table
+    //private static final String KEY_UNIT_ID = "unitID";//COLUMN unitID @primaryKey for Unit table
 
     //Common between Users, Applications and Residence tables
-    private static final String KEY_USERNAME = "username";//COLUMN user name @primaryKey for Users table
+    //private static final String KEY_USERNAME = "username";//COLUMN user name @primaryKey for Users table
 
     // Allocations Table - column names
     private static final String KEY_ALLOCATION_ID = "allocationID";//COLUMN Allocation ID @primaryKey
     private static final String KEY_FROM_DATE = "fromDate";//COLUMN fromDate
+    private static final String KEY_FK_DURATION = "duration";//COLUMN duration
+    private static final String KEY_FK_UNIT_ID = "unitID"; //COLUMN unitID
+    private static final String KEY_FK_APPLICATION_ID = "applicationID";//COLUMN applicationID
 
     // Applications Table - column names
+    private static final String KEY_APPLICATION_ID = "applicationID";
     private static final String KEY_APPLICATION_DATE = "applicationDate";//COLUMN applicationDate
     private static final String KEY_REQUIRED_MONTH = "requiredMonth";//COLUMN required months
     private static final String KEY_REQUIRED_YEAR = "requiredYear";//COLUMN required year
     private static final String KEY_STATUS = "status";//COLUMN application status
+    private static final String KEY_APPLY_UNAME = "applicantUsername";//COLUMN application username
+    private static final String KEY_FK_RESIDENCE_ID = "residenceID";//COLUMN residence ID
+    private static final String KEY_FK_UNIT_NO = "unitNo";//COLUMN unit number
+    private static final String KEY_FK_ADURATION = "application duration";//COLUMN duration
 
     // Residence Table - column names
+    private static final String KEY_RESIDENCE_ID = "residenceID";//COLUMN residence ID
     private static final String KEY_RESIDENCE_NAME = "residenceName";//COLUMN address
     private static final String KEY_RESIDENCE_ADDRESS = "address";//COLUMN address
     private static final String KEY_NUM_UNITS = "numUnits";//COLUMN number of units
     private static final String KEY_SIZE_PER_UNIT = "sizePerUnit";//COLUMN size per unit
     private static final String KEY_MONTHLY_RENTAL = "monthlyRental";//COLUMN monthly rental
+    private static final String KEY_FK_USERNAME = "username";//COLUMN username
 
     // Unit Table - column names
+    private static final String KEY_UNIT_ID = "unitId";//COLUMN unitId
+    private static final String KEY_FK_URESIDENCE_ID = "residenceId";//COLUMN residenceId
     private static final String KEY_UNIT_NO = "unitNo";//COLUMN unitNo
     private static final String KEY_AVAILABILITY = "availability";//COLUMN availability
 
+
     // Users Table - column names
+    private static final String KEY_USERNAME = "username";//COLUMN user name
     private static final String KEY_USERTYPE = "usertype";//COLUMN user type
     private static final String KEY_PASSWORD = "password";//COLUMN password
     private static final String KEY_NAME = "name";//COLUMN name
@@ -85,11 +100,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ( "
             + KEY_ALLOCATION_ID + " INTEGER PRIMARY KEY, "
             + KEY_FROM_DATE + " DATE,"
-            + KEY_DURATION + " TEXT,"
-            + KEY_UNIT_ID + " INTEGER,"
-            + KEY_APPLICATION_ID + " INTEGER,"
-            + " FOREIGN KEY (" + KEY_UNIT_ID + ") REFERENCES " + TABLE_UNIT + "(" + KEY_UNIT_ID + "));"
-            + " FOREIGN KEY (" + KEY_APPLICATION_ID + ") REFERENCES " + TABLE_APPLICATIONS + "(" + KEY_APPLICATION_ID + "));";
+            + KEY_FK_DURATION + " TEXT,"
+            + KEY_FK_UNIT_ID + " INTEGER,"
+            + KEY_FK_APPLICATION_ID + " INTEGER"
+            + " ) ";
+
 
     // Creating Applications Table
     private static final String SQL_TABLE_APPLICATIONS = " CREATE TABLE " + TABLE_APPLICATIONS //SQL for creating application table
@@ -99,12 +114,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_REQUIRED_MONTH + " TEXT,"
             + KEY_REQUIRED_YEAR + " TEXT,"
             + KEY_STATUS + " TEXT,"
-            + KEY_USERNAME + " TEXT,"
-            + KEY_RESIDENCE_ID + " INTEGER,"
-            + KEY_UNIT_NO + " INTEGER,"
-            + KEY_DURATION + " TEXT,"
-            + " FOREIGN KEY (" + KEY_USERNAME + ") REFERENCES " + TABLE_USERS + "(" + KEY_USERNAME + "));"
-            + " FOREIGN KEY (" + KEY_RESIDENCE_ID + ") REFERENCES " + TABLE_RESIDENCE + "(" + KEY_RESIDENCE_ID + "));";
+            + KEY_APPLY_UNAME + " TEXT,"
+            + KEY_FK_RESIDENCE_ID + " INTEGER,"
+            + KEY_FK_UNIT_NO + " INTEGER,"
+            + KEY_FK_ADURATION + "TEXT"
+            + " ) ";
+
 
     // Creating Residence Table
     private static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating residence table
@@ -115,17 +130,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_NUM_UNITS + " TEXT,"
             + KEY_SIZE_PER_UNIT + " TEXT,"
             + KEY_MONTHLY_RENTAL + " TEXT,"
-            + KEY_USERNAME + " TEXT,"
-            + " FOREIGN KEY (" + KEY_USERNAME + ") REFERENCES " + TABLE_USERS + "(" + KEY_USERNAME + "));";
+            + KEY_FK_USERNAME + " TEXT"
+            + " ) ";
+
 
     // Creating Units table
     private static final String SQL_TABLE_UNIT = " CREATE TABLE " + TABLE_UNIT //SQL for creating unit table
             + " ( "
             + KEY_UNIT_ID + " INTEGER PRIMARY KEY,"
-            + KEY_RESIDENCE_ID + " INTEGER,"
+            + KEY_FK_URESIDENCE_ID + " INTEGER,"
             + KEY_UNIT_NO + " INTEGER,"
-            + KEY_AVAILABILITY + " TEXT,"
-            + " FOREIGN KEY (" + KEY_RESIDENCE_ID + ") REFERENCES " + TABLE_RESIDENCE + "(" + KEY_RESIDENCE_ID + "));";
+            + KEY_AVAILABILITY + " TEXT"
+            + " ) ";
+
 
     // Creating Users Table
     private static final String SQL_TABLE_USERS = " CREATE TABLE " + TABLE_USERS //SQL for creating users table
@@ -221,7 +238,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /*
+    public Contact GetContact(int id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Util.TABLE_NAME,
+                new String[]{Util.KEY_ID,
+                        Util.KEY_NAME,
+                        Util.KEY_PHONE_NUMBER},
+                Util.KEY_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Contact contact = new Contact();
+        contact.setId(Integer.parseInt(cursor.getString(0)));
+        contact.setName(cursor.getString(1));
+        contact.setPhoneNumber(cursor.getString(2));
+        db.close();
+        return contact;
+    }
+    */
+
     public Residence getResidence(int id){
+
+        /*
+        // Creating Residence Table
+            private static final String SQL_TABLE_RESIDENCE = " CREATE TABLE " + TABLE_RESIDENCE //SQL for creating residence table
+            + " ( "
+            + KEY_RESIDENCE_ID + " INTEGER PRIMARY KEY,"
+            + KEY_RESIDENCE_NAME + " TEXT,"
+            + KEY_RESIDENCE_ADDRESS + " TEXT,"
+            + KEY_NUM_UNITS + " TEXT,"
+            + KEY_SIZE_PER_UNIT + " TEXT,"
+            + KEY_MONTHLY_RENTAL + " TEXT,"
+            + KEY_FK_USERNAME + " TEXT"
+            + " ) ";
+         */
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -231,7 +288,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         KEY_RESIDENCE_ADDRESS,
                         KEY_NUM_UNITS,
                         KEY_SIZE_PER_UNIT,
-                        KEY_MONTHLY_RENTAL},
+                        KEY_MONTHLY_RENTAL,
+                KEY_FK_USERNAME},
                 KEY_RESIDENCE_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null,null,null);
@@ -247,6 +305,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         residence.setMonthlyRental(Double.parseDouble(cursor.getString(5)));
         db.close();
         return residence;
+    }
+
+    public ArrayList<Applications> getAllApplicationByResID(int id){
+        ArrayList<Applications> applicationsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAll = "SELECT * FROM " + TABLE_APPLICATIONS + " WHERE " + KEY_RESIDENCE_ID +
+                " =? ";
+
+        Cursor cursor = db.rawQuery(selectAll, new String[]{Integer.toString(id)});
+        if (cursor.moveToFirst()){
+            do {
+                Applications applications = new Applications();
+                applications.setApplicationID(Integer.parseInt(cursor.getString(0)));
+                applications.setStatus(cursor.getString(1));
+                applications.setRequiredMonth(cursor.getString(2));
+                applications.setApplicationDate(cursor.getString(3));
+                applicationsList.add(applications);
+
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return  applicationsList;
+
     }
 
     public List<Residence> GetAllResidences(){

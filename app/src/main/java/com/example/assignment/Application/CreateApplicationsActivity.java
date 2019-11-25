@@ -1,6 +1,7 @@
 package com.example.assignment.Application;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -39,11 +40,11 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
 
-        applications.setApplicationDate(applicationDate.getText().toString().trim());
         applications.setApplicationDate(currentDateandTime);
         applications.setRequiredMonth(String.valueOf(requiredMonth.getSelectedItem()));
         applications.setRequiredYear(Integer.parseInt(requiredYear.getText().toString()));
         applications.setStatus("New");
+
 
         databaseHelper.addApplications(applications);
 
@@ -109,6 +110,18 @@ public class CreateApplicationsActivity extends AppCompatActivity implements Ada
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //String currentDateandTime = sdf.format(new Date());
         //applicationDate.setText(currentDateandTime);
+
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", -1);
+
+        //if (id != -1){
+        //    residence = databaseHelper.getResidence(id);
+        //    Residence nResidence = new Residence();
+        //    editAddress.setText(residence.getAddress());
+        //    editNumOfUnit.setText(residence.getNumOfUnits());
+        //    editSizePerUnit.setText(residence.getSizePerUnit());
+        //    editMonthlyRental.setText("");
+        //}
 
         requiredMonth = findViewById(R.id.monthEditText);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CreateApplicationsActivity.this,
