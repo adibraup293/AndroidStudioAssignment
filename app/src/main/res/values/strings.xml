@@ -16,6 +16,7 @@
     <string name="DROP_TABLE">DROP TABLE IF EXISTS</string>
 
     <string name="month_prompt">Select a month</string>
+    <string name="failedSignUp">Sign up failed, please try again</string>
     <string-array name="months">
         <item>January</item>
         <item>February</item>
