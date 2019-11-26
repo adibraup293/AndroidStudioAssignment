@@ -29,13 +29,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
-    public boolean validate() {
-        return adminBtn.isSelected() && applicantBtn.isSelected();
-    }
-
     public void addAdmin(View view) {
 
-        if (validate() == false) {
+        if (adminBtn.isSelected()) {
             Toast.makeText(this, "Please select a radio button", Toast.LENGTH_SHORT).show();
         } else {
             UserAdmin userAdmin = new UserAdmin();
@@ -53,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void addApplicant(View view) {
 
-        if (validate() == false) {
+        if (applicantBtn.isSelected()) {
             Toast.makeText(this, "Please select a radio button", Toast.LENGTH_SHORT).show();
         } else {
             Applicant applicant = new Applicant();

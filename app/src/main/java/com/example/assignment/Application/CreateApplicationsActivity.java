@@ -15,13 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.assignment.DatabaseHelper;
 import com.example.assignment.R;
-import com.example.assignment.Residence.Residence;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class CreateApplicationsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    public void back(View view) {
+        finish();
+    }
 
     EditText applicationDate;
     private static final String[] paths = {"January", "February", "March", "April", "May", "June",

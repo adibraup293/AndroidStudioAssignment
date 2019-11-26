@@ -22,7 +22,7 @@ public class ViewApplicationsUserActivity extends AppCompatActivity {
 
     public void GetAllApplications(){
         List<Applications> applicationsList = databaseHelper.GetAllApplications();
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, applicationsList);
+        ArrayAdapter<Applications> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, applicationsList);
         applicationsSubmitted.setAdapter(adapter);
     }
 

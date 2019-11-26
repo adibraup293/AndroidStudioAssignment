@@ -1,6 +1,5 @@
 package com.example.assignment;
 
-import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.assignment.Admin.UserAdmin;
 import com.example.assignment.Application.Applications;
 import com.example.assignment.Residence.Residence;
+import com.example.assignment.Unit.Unit;
 import com.example.assignment.User.Applicant;
 import com.example.assignment.User.User;
 
@@ -238,6 +238,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void addUnit(Unit unit) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_AVAILABILITY, unit.getAvailability());
+
+        db.insert(TABLE_UNIT, null, contentValues);
+        db.close();
+    }
+
     /*
         public Residence GetResidence(int id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -296,7 +305,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         applications.setRequiredMonth(cursor.getString(2));
         applications.setStatus(cursor.getString(3));
 
-        db.close();;
+        db.close();
         return applications;
     }
 
